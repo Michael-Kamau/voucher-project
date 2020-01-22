@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22f14ed5-2947-45ff-a6b8-96e05521753a" name="Default Changelist" comment="" />
+    <list default="true" id="22f14ed5-2947-45ff-a6b8-96e05521753a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +14,9 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -100,6 +105,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1Wi8Zbb5EvJZAbvA3soa8S5aexX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -140,7 +146,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579621111430</updated>
       <workItem from="1579621117088" duration="408000" />
-      <workItem from="1579707848496" duration="352000" />
+      <workItem from="1579707848496" duration="1492000" />
     </task>
     <servers />
   </component>
@@ -148,6 +154,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1238" height="212" key="GridCell.Tab.0.bottom" timestamp="1579709616976">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1579709616976" />
+    <state width="1238" height="212" key="GridCell.Tab.0.center" timestamp="1579709616973">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1579709616973" />
+    <state width="1238" height="212" key="GridCell.Tab.0.left" timestamp="1579709616972">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1579709616972" />
+    <state width="1238" height="212" key="GridCell.Tab.0.right" timestamp="1579709616974">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1579709616974" />
     <state x="319" y="232" key="com.intellij.ide.util.TipDialog" timestamp="1579621140459">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
