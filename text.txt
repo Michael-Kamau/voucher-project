@@ -1,0 +1,201 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema vms_database
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `vms_database` ;
+
+-- -----------------------------------------------------
+-- Schema vms_database
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `vms_database` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `vms_database` ;
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`role_permission`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`role_permission` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`role_permission` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `role_id` INT NOT NULL,
+  `permission_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`roles`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`roles` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `role_name` VARCHAR(20) NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` TIMESTAMP NOT NULL,
+  `role_permission_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `role_permission_id`),
+  CONSTRAINT `fk_roles_role_permission1`
+    FOREIGN KEY (`role_permission_id`)
+    REFERENCES `vms_database`.`role_permission` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_roles_role_permission1_idx` ON `vms_database`.`roles` (`role_permission_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`users` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `full_name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `role_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` TIMESTAMP NOT NULL,
+  `roles_id` INT NOT NULL,
+  `roles_permissions_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `roles_id`, `roles_permissions_id`),
+  CONSTRAINT `fk_users_roles1`
+    FOREIGN KEY (`roles_id`)
+    REFERENCES `vms_database`.`roles` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_users_roles1_idx` ON `vms_database`.`users` (`roles_id` ASC, `roles_permissions_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`permissions`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`permissions` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`permissions` (
+  `id` INT NOT NULL,
+  `view` INT NULL,
+  `create` INT NULL,
+  `delete` INT NULL,
+  `update` INT NULL,
+  `created_at` VARCHAR(45) NOT NULL,
+  `updated_at` VARCHAR(45) NOT NULL,
+  `role_permission_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `role_permission_id`),
+  CONSTRAINT `fk_permissions_role_permission1`
+    FOREIGN KEY (`role_permission_id`)
+    REFERENCES `vms_database`.`role_permission` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_permissions_role_permission1_idx` ON `vms_database`.`permissions` (`role_permission_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`user_voucher`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`user_voucher` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`user_voucher` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NULL,
+  `voucher_id` INT NOT NULL,
+  `payment_code` VARCHAR(45) NOT NULL,
+  `other` VARCHAR(45) NULL,
+  `users_id` INT NOT NULL,
+  `users_roles_id` INT NOT NULL,
+  `users_roles_permissions_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `users_id`, `users_roles_id`, `users_roles_permissions_id`),
+  CONSTRAINT `fk_user_voucher_users1`
+    FOREIGN KEY (`users_id` , `users_roles_id` , `users_roles_permissions_id`)
+    REFERENCES `vms_database`.`users` (`id` , `roles_id` , `roles_permissions_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_user_voucher_users1_idx` ON `vms_database`.`user_voucher` (`users_id` ASC, `users_roles_id` ASC, `users_roles_permissions_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`voucher`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`voucher` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`voucher` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(45) NOT NULL,
+  `amount` INT NOT NULL,
+  `status` VARCHAR(45) NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` TIMESTAMP NOT NULL,
+  `user_voucher_id` INT NOT NULL,
+  `user_voucher_users_id` INT NOT NULL,
+  `user_voucher_users_roles_id` INT NOT NULL,
+  `user_voucher_users_roles_permissions_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `user_voucher_id`, `user_voucher_users_id`, `user_voucher_users_roles_id`, `user_voucher_users_roles_permissions_id`),
+  CONSTRAINT `fk_voucher_user_voucher1`
+    FOREIGN KEY (`user_voucher_id` , `user_voucher_users_id` , `user_voucher_users_roles_id` , `user_voucher_users_roles_permissions_id`)
+    REFERENCES `vms_database`.`user_voucher` (`id` , `users_id` , `users_roles_id` , `users_roles_permissions_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `code_UNIQUE` ON `vms_database`.`voucher` (`code` ASC);
+
+CREATE INDEX `fk_voucher_user_voucher1_idx` ON `vms_database`.`voucher` (`user_voucher_id` ASC, `user_voucher_users_id` ASC, `user_voucher_users_roles_id` ASC, `user_voucher_users_roles_permissions_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`product`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`product` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`product` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vms_database`.`product_voucher`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vms_database`.`product_voucher` ;
+
+CREATE TABLE IF NOT EXISTS `vms_database`.`product_voucher` (
+  `id` INT NOT NULL,
+  `voucher_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  `voucher_id1` INT NOT NULL,
+  `product_id1` INT NOT NULL,
+  PRIMARY KEY (`id`, `voucher_id1`, `product_id1`),
+  CONSTRAINT `fk_product_voucher_voucher1`
+    FOREIGN KEY (`voucher_id1`)
+    REFERENCES `vms_database`.`voucher` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_product_voucher_product1`
+    FOREIGN KEY (`product_id1`)
+    REFERENCES `vms_database`.`product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_product_voucher_voucher1_idx` ON `vms_database`.`product_voucher` (`voucher_id1` ASC);
+
+CREATE INDEX `fk_product_voucher_product1_idx` ON `vms_database`.`product_voucher` (`product_id1` ASC);
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
