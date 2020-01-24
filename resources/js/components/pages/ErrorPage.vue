@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "Active.vue"
+        name: "ErrorPage.vue"
     }
 </script>
 

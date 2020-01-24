@@ -1,10 +1,12 @@
 <template>
-
+<div class="myVouchers">
+    <h2>My vouchers</h2>
+</div>
 </template>
 
 <script>
     export default {
-        name: "Redeemed.vue"
+        name: "UserVoucher.vue"
     }
 </script>
 

@@ -23,4 +23,6 @@ Route::get('/', function () {
 //    return 'you are admin';
 //})->middleware(['auth','auth.admin']);
 
+Route::get('/user', 'HomeController@user')->name('user');
+
 

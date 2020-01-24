@@ -2,21 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22f14ed5-2947-45ff-a6b8-96e05521753a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/ActiveVouchers.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/AddVoucher.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/HomePage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/RedeemedVouchers.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/users/Active.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/users/HomePage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/users/Redeemed.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/users/Unclaimed.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/css/foundation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/css/foundation.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/what-input.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/components.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/includes/NavBar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/pages/Index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/ActiveVouchers.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/RedeemedVouchers.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/UnclaimedVouchers.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/UserVoucher.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cytonn_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cytonn_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/users/Active.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vueMain.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/users/Redeemed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/ErrorPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/users/Unclaimed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/foundation/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +50,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -124,6 +141,21 @@
       <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
       <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/vendor/league/event" />
+      <path value="$PROJECT_DIR$/vendor/laravel/passport" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Wi8Zbb5EvJZAbvA3soa8S5aexX" />
@@ -137,10 +169,16 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources" />
+      <recent name="$PROJECT_DIR$/resources/js/router" />
+      <recent name="$PROJECT_DIR$/resources/js/store" />
+      <recent name="$PROJECT_DIR$/resources/js/components/includes" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/models" />
       <recent name="$PROJECT_DIR$/app/modles" />
@@ -178,7 +216,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579621111430</updated>
       <workItem from="1579621117088" duration="408000" />
-      <workItem from="1579707848496" duration="22018000" />
+      <workItem from="1579707848496" duration="34390000" />
     </task>
     <servers />
   </component>
