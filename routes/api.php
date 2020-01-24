@@ -19,17 +19,33 @@ use Illuminate\Http\Request;
 
 //List all the vouchers
 
-Route::get('voucher','VoucherController@index');
+Route::group(['middleware' => 'guest'], function () {
 
-//List a single voucher
-Route::get('voucher/{id}','VoucherController@show');
+});
 
 
+//Route::group(['middleware' => 'auth'], function () {
+//
+//
+//Route::get('/voucher','VoucherController@index');
+//
+////List a single voucher
+//Route::get('voucher/{id}','VoucherController@show');
+//
+//
 //Create a new voucher
-Route::post('voucher','VoucherController@store');
-
-//update voucher
-Route::put('voucher','VoucherController@store');
-
-//Delete an article
-Route::delete('voucher','VoucherController@store');
+//Route::post('voucher','VoucherController@store');
+//
+////update a voucher
+//Route::put('voucher','VoucherController@store');
+//
+////Delete a voucher
+//Route::delete('voucher','VoucherController@store');
+//
+////Buy A voucher
+//Route::get('voucher/buy','VoucherController@buy');
+//
+//Give A voucher
+//Route::post('voucher/give','VoucherController@give');
+//
+//});

@@ -18,7 +18,7 @@
                     <td>{{voucher.code}}</td>
                     <td>{{voucher.amount}}</td>
                     <td>{{voucher.expiry_date}}</td>
-                    <td><button>Buy Voucher</button></td>
+                    <td><button @click="buyVoucher(voucher.id)">Buy Voucher</button></td>
 
 
                 </tr>
@@ -31,6 +31,11 @@
 <script>
     export default {
         name: "ActiveVouchers.vue",
+        methods:{
+            buyVoucher(voucherId){
+                this.$store.dispatch('buyVoucher',{'voucher_id':voucherId});
+            }
+        },
         mounted() {
             this.$store.dispatch('getAllVouchers');
         }

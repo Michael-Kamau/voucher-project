@@ -2,37 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22f14ed5-2947-45ff-a6b8-96e05521753a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/foundation/css/foundation.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/foundation/css/foundation.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/foundation/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/foundation/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/what-input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/components.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/includes/NavBar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/pages/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/ActiveVouchers.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/RedeemedVouchers.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/UnclaimedVouchers.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/UserVoucher.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cytonn_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cytonn_project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VoucherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VoucherController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Voucher.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Voucher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/voucher/Voucher.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/voucher/Voucher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/VoucherFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/VoucherFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/users/Active.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vueMain.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/users/Redeemed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/ErrorPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/users/Unclaimed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/foundation/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/vouchers/ActiveVouchers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vouchers/ActiveVouchers.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/vouchers/UserVoucher.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vouchers/UserVoucher.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -216,7 +198,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579621111430</updated>
       <workItem from="1579621117088" duration="408000" />
-      <workItem from="1579707848496" duration="34390000" />
+      <workItem from="1579707848496" duration="55911000" />
     </task>
     <servers />
   </component>
@@ -244,5 +226,9 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="319" y="232" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1579621140459" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1579877096911">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1579877096911" />
   </component>
 </project>

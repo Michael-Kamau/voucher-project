@@ -2016,6 +2016,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ActiveVouchers.vue",
+  methods: {
+    buyVoucher: function buyVoucher(voucherId) {
+      this.$store.dispatch('buyVoucher', {
+        'voucher_id': voucherId
+      });
+    }
+  },
   mounted: function mounted() {
     this.$store.dispatch('getAllVouchers');
   }
@@ -2059,8 +2066,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "UserVoucher.vue"
+  name: "UserVoucher.vue",
+  methods: {
+    giveVoucher: function giveVoucher(id) {}
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('getMyVouchers');
+  }
 });
 
 /***/ }),
@@ -37591,7 +37635,19 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(voucher.expiry_date))]),
               _vm._v(" "),
-              _vm._m(1, true)
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.buyVoucher(voucher.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Buy Voucher")]
+                )
+              ])
             ])
           })
         ],
@@ -37618,12 +37674,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Buy")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("button", [_vm._v("Buy Voucher")])])
   }
 ]
 render._withStripped = true
@@ -37680,15 +37730,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "myVouchers" }, [
+    _c("h2", [_vm._v("My vouchers")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "myTable" }, [
+      _c(
+        "table",
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(this.$store.getters.getAllVouchers, function(voucher) {
+            return _c("tr", { key: voucher.id }, [
+              _c("td", [_vm._v(_vm._s(voucher.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.code))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.amount))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.status))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.expiry_date))]),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _c("td", [
+                _c("button", { attrs: { click: _vm.giveVoucher() } }, [
+                  _vm._v("Give")
+                ])
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "myVouchers" }, [
-      _c("h2", [_vm._v("My vouchers")])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Expiry Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Redeem")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Give Voucher")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Give")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("button", [_vm._v("Redeem")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("input", {
+        attrs: { type: "email", name: "email", placeholder: "email address" }
+      }),
+      _c("br")
     ])
   }
 ]
@@ -54445,11 +54564,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
   state: {
     token: null,
-    allVouchers: null
+    allVouchers: null,
+    myVouchers: null
   },
   getters: {
     getAllVouchers: function getAllVouchers(state) {
       return state.allVouchers;
+    },
+    getMyVouchers: function getMyVouchers(state) {
+      return state.myVouchers;
     }
   },
   actions: {
@@ -54489,12 +54612,40 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
       }
     },
     getAllVouchers: function getAllVouchers(state) {
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://ctvms.appp/api/voucher/").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/voucher/").then(function (response) {
         console.log(response.data);
         var vouchers = response.data;
         state.commit('getAllVouchers', vouchers);
         resolve(response);
       })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    getMyVouchers: function getMyVouchers(state) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/voucher/1").then(function (response) {
+        console.log(response.data);
+        var vouchers = response.data;
+        state.commit('getMyVouchers', vouchers);
+        resolve(response);
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    buyVoucher: function buyVoucher(state, payload) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/buy", payload).then(function (response) {
+        console.log(response.data);
+        state.dispatch('getAllVouchers');
+      })["catch"](function (e) {
+        //this.errors.push(e)
+        console.log(e);
+      });
+    },
+    giveVoucher: function giveVoucher(state, payload) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/give", payload).then(function (response) {
+        console.log(response.data);
+        state.dispatch('getMyVouchers');
+      })["catch"](function (e) {
+        //this.errors.push(e)
         console.log(e);
       });
     }
@@ -54518,6 +54669,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
       });
     },
     getAllVouchers: function getAllVouchers(state, payload) {
+      state.allVouchers = payload.data;
+    },
+    getMyVouchers: function getMyVouchers(state, payload) {
       state.allVouchers = payload.data;
     }
   }

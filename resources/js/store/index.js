@@ -7,14 +7,19 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         token:null,
-        allVouchers:null
+        allVouchers:null,
+        myVouchers:null
 
     },
 
     getters: {
         getAllVouchers(state){
             return state.allVouchers
+        },
+        getMyVouchers(state){
+            return state.myVouchers
         }
+
 
 
     },
@@ -66,7 +71,7 @@ export default new Vuex.Store({
         },
 
         getAllVouchers(state) {
-            axios.get(`http://ctvms.appp/api/voucher/`)
+            axios.get(`/api/voucher/`)
                 .then(response => {
                     console.log(response.data)
                     let vouchers = response.data
@@ -78,6 +83,41 @@ export default new Vuex.Store({
 
 
         },
+        getMyVouchers(state) {
+            axios.get(`/api/voucher/1`)
+                .then(response => {
+                    console.log(response.data)
+                    let vouchers = response.data
+                    state.commit('getMyVouchers', vouchers)
+                    resolve(response)
+                }).catch(e => {
+                console.log(e)
+            })
+
+
+        },
+        buyVoucher(state,payload){
+            axios.post(`/api/voucher/buy`,payload)
+                .then(response => {
+                    console.log(response.data)
+                   state.dispatch('getAllVouchers')
+                }).catch(e => {
+                //this.errors.push(e)
+                console.log(e)
+            })
+
+        },
+        giveVoucher(state,payload){
+            axios.post(`/api/voucher/give`,payload)
+                .then(response => {
+                    console.log(response.data)
+                    state.dispatch('getMyVouchers')
+                }).catch(e => {
+                //this.errors.push(e)
+                console.log(e)
+            })
+        }
+
 
     },
 
@@ -100,6 +140,9 @@ export default new Vuex.Store({
             })
         },
         getAllVouchers(state,payload) {
+            state.allVouchers=payload.data
+        },
+        getMyVouchers(state,payload) {
             state.allVouchers=payload.data
         },
 

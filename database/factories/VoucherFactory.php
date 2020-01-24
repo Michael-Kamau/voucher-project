@@ -10,7 +10,7 @@ $factory->define(App\Voucher::class, function (Faker $faker) {
         //
         'code'=>$faker->text(15),
         'amount'=>$faker->randomNumber(8),
-        'status'=>'inactive',
+        'status'=>'active',
         'expiry_date'=>$faker->dateTime()
     ];
 });
