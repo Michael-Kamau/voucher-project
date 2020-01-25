@@ -57,13 +57,15 @@ class VoucherController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param int $status
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($status)
     {
+
+
         //Get a single voucher
-        $voucher = Voucher::myActive(Auth::user()->id)->get();
+        $voucher = Voucher::vouchers(Auth::user()->id,$status)->get();
 
         //return single article as a resource
         return new VoucherResource($voucher);
@@ -137,6 +139,21 @@ class VoucherController extends Controller
         $voucher = Voucher::find($request->input('voucher'));
 //        $voucher->status='bought';
         $voucher->email=$request->input('email');
+        $voucher->save();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function redeem(Request $request)
+    {
+        //
+        $voucher = Voucher::find($request->input('voucher'));
+//        $voucher->status='bought';
+        $voucher->status='redeemed';
         $voucher->save();
     }
 

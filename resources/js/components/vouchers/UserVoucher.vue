@@ -17,17 +17,15 @@
 
             </tr>
             </thead>
-            <tr v-for="voucher in this.$store.getters.getAllVouchers" :key="voucher.id">
+            <tr v-for="voucher in this.$store.getters.getMyVouchers" :key="voucher.id">
                 <td>{{voucher.id}}</td>
                 <td>{{voucher.code}}</td>
                 <td>{{voucher.amount}}</td>
                 <td>{{voucher.status}}</td>
                 <td>{{voucher.expiry_date}}</td>
-                <td><button>Redeem</button></td>
+                <td><button @click="redeemVoucher(voucher.id)">Redeem</button></td>
                 <td><input type="email" name="email" placeholder="email address"><br></td>
-                <td><button :click="giveVoucher()">Give</button></td>
-
-
+                <td><button @click="giveVoucher()">Give</button></td>
             </tr>
         </table>
 
@@ -41,6 +39,9 @@
         methods:{
             giveVoucher(id){
 
+            },
+            redeemVoucher(id){
+                this.$store.dispatch('redeemVoucher',{'voucher':id})
             }
         },
         mounted() {

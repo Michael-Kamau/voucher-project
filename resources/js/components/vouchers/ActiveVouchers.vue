@@ -19,9 +19,12 @@
                     <td>{{voucher.amount}}</td>
                     <td>{{voucher.expiry_date}}</td>
                     <td><button @click="buyVoucher(voucher.id)">Buy Voucher</button></td>
-
+<div class="main">
+    here is the main reason as to i will not be able to make it to the meeting
+</div>
 
                 </tr>
+
             </table>
 
         </div>

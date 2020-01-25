@@ -2014,6 +2014,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ActiveVouchers.vue",
   methods: {
@@ -2045,8 +2048,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "RedeemedVouchers"
+  name: "RedeemedVouchers",
+  mounted: function mounted() {
+    this.$store.dispatch('getRedeemedVouchers');
+  }
 });
 
 /***/ }),
@@ -2095,12 +2124,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserVoucher.vue",
   methods: {
-    giveVoucher: function giveVoucher(id) {}
+    giveVoucher: function giveVoucher(id) {},
+    redeemVoucher: function redeemVoucher(id) {
+      this.$store.dispatch('redeemVoucher', {
+        'voucher': id
+      });
+    }
   },
   mounted: function mounted() {
     this.$store.dispatch('getMyVouchers');
@@ -37647,6 +37679,12 @@ var render = function() {
                   },
                   [_vm._v("Buy Voucher")]
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "main" }, [
+                _vm._v(
+                  "\n    here is the main reason as to i will not be able to make it to the meeting\n"
+                )
               ])
             ])
           })
@@ -37697,15 +37735,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "redeemedVouchers" }, [
+    _c("h2", [_vm._v("Redeemed Vouchers")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "myTable" }, [
+      _c(
+        "table",
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(this.$store.getters.getMyRedeemed, function(voucher) {
+            return _c("tr", { key: voucher.id }, [
+              _c("td", [_vm._v(_vm._s(voucher.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.code))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.amount))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.status))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(voucher.expiry_date))])
+            ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "redeemedVouchers" }, [
-      _c("h2", [_vm._v("Redeemed Vouchers")])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Expiry Date")])
+      ])
     ])
   }
 ]
@@ -37739,7 +37813,7 @@ var render = function() {
         [
           _vm._m(0),
           _vm._v(" "),
-          _vm._l(this.$store.getters.getAllVouchers, function(voucher) {
+          _vm._l(this.$store.getters.getMyVouchers, function(voucher) {
             return _c("tr", { key: voucher.id }, [
               _c("td", [_vm._v(_vm._s(voucher.id))]),
               _vm._v(" "),
@@ -37751,14 +37825,34 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(voucher.expiry_date))]),
               _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.redeemVoucher(voucher.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Redeem")]
+                )
+              ]),
+              _vm._v(" "),
               _vm._m(1, true),
               _vm._v(" "),
-              _vm._m(2, true),
-              _vm._v(" "),
               _c("td", [
-                _c("button", { attrs: { click: _vm.giveVoucher() } }, [
-                  _vm._v("Give")
-                ])
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.giveVoucher()
+                      }
+                    }
+                  },
+                  [_vm._v("Give")]
+                )
               ])
             ])
           })
@@ -37792,12 +37886,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Give")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("button", [_vm._v("Redeem")])])
   },
   function() {
     var _vm = this
@@ -54565,7 +54653,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
   state: {
     token: null,
     allVouchers: null,
-    myVouchers: null
+    myVouchers: null,
+    myRedeemedVouchers: null
   },
   getters: {
     getAllVouchers: function getAllVouchers(state) {
@@ -54573,6 +54662,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     },
     getMyVouchers: function getMyVouchers(state) {
       return state.myVouchers;
+    },
+    getMyRedeemed: function getMyRedeemed(state) {
+      return state.myRedeemedVouchers;
     }
   },
   actions: {
@@ -54616,17 +54708,24 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
         console.log(response.data);
         var vouchers = response.data;
         state.commit('getAllVouchers', vouchers);
-        resolve(response);
       })["catch"](function (e) {
         console.log(e);
       });
     },
     getMyVouchers: function getMyVouchers(state) {
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/voucher/1").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/voucher/bought").then(function (response) {
         console.log(response.data);
         var vouchers = response.data;
         state.commit('getMyVouchers', vouchers);
-        resolve(response);
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    getRedeemedVouchers: function getRedeemedVouchers(state) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/voucher/redeemed").then(function (response) {
+        console.log(response.data);
+        var vouchers = response.data;
+        state.commit('getRedeemedVouchers', vouchers);
       })["catch"](function (e) {
         console.log(e);
       });
@@ -54642,6 +54741,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     },
     giveVoucher: function giveVoucher(state, payload) {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/give", payload).then(function (response) {
+        console.log(response.data);
+        state.dispatch('getMyVouchers');
+      })["catch"](function (e) {
+        //this.errors.push(e)
+        console.log(e);
+      });
+    },
+    redeemVoucher: function redeemVoucher(state, payload) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/redeem", payload).then(function (response) {
         console.log(response.data);
         state.dispatch('getMyVouchers');
       })["catch"](function (e) {
@@ -54672,7 +54780,10 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
       state.allVouchers = payload.data;
     },
     getMyVouchers: function getMyVouchers(state, payload) {
-      state.allVouchers = payload.data;
+      state.myVouchers = payload.data;
+    },
+    getRedeemedVouchers: function getRedeemedVouchers(state, payload) {
+      state.myRedeemedVouchers = payload.data;
     }
   }
 }));

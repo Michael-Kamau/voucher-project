@@ -8,7 +8,8 @@ export default new Vuex.Store({
     state: {
         token:null,
         allVouchers:null,
-        myVouchers:null
+        myVouchers:null,
+        myRedeemedVouchers:null
 
     },
 
@@ -18,6 +19,9 @@ export default new Vuex.Store({
         },
         getMyVouchers(state){
             return state.myVouchers
+        },
+        getMyRedeemed(state){
+            return state.myRedeemedVouchers
         }
 
 
@@ -76,7 +80,6 @@ export default new Vuex.Store({
                     console.log(response.data)
                     let vouchers = response.data
                     state.commit('getAllVouchers', vouchers)
-                    resolve(response)
                 }).catch(e => {
                 console.log(e)
             })
@@ -84,12 +87,23 @@ export default new Vuex.Store({
 
         },
         getMyVouchers(state) {
-            axios.get(`/api/voucher/1`)
+            axios.get(`/api/voucher/bought`)
                 .then(response => {
                     console.log(response.data)
                     let vouchers = response.data
                     state.commit('getMyVouchers', vouchers)
-                    resolve(response)
+                }).catch(e => {
+                console.log(e)
+            })
+
+
+        },
+        getRedeemedVouchers(state) {
+            axios.get(`/api/voucher/redeemed`)
+                .then(response => {
+                    console.log(response.data)
+                    let vouchers = response.data
+                    state.commit('getRedeemedVouchers', vouchers)
                 }).catch(e => {
                 console.log(e)
             })
@@ -109,6 +123,16 @@ export default new Vuex.Store({
         },
         giveVoucher(state,payload){
             axios.post(`/api/voucher/give`,payload)
+                .then(response => {
+                    console.log(response.data)
+                    state.dispatch('getMyVouchers')
+                }).catch(e => {
+                //this.errors.push(e)
+                console.log(e)
+            })
+        },
+        redeemVoucher(state,payload){
+            axios.post(`/api/voucher/redeem`,payload)
                 .then(response => {
                     console.log(response.data)
                     state.dispatch('getMyVouchers')
@@ -143,7 +167,10 @@ export default new Vuex.Store({
             state.allVouchers=payload.data
         },
         getMyVouchers(state,payload) {
-            state.allVouchers=payload.data
+            state.myVouchers=payload.data
+        },
+        getRedeemedVouchers(state,payload) {
+            state.myRedeemedVouchers=payload.data
         },
 
     }

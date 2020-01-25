@@ -18,10 +18,10 @@ Route::get('/', function () {
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/admin',function(){
-//
-//    return 'you are admin';
-//})->middleware(['auth','auth.admin']);
+Route::get('/admin',function(){
+
+    return 'you are admin';
+})->middleware(['auth','auth.admin']);
 
 Route::get('/user', 'HomeController@user')->name('user');
 
@@ -35,16 +35,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user', 'HomeController@user')->name('user');
 
     //Get all the active vouchers
-    Route::get('/api/voucher', 'VoucherController@index');
+    Route::get('/api/voucher/', 'VoucherController@index');
 
-    ////List a single voucher
-    Route::get('api/voucher/{id}', 'VoucherController@show');
+    ////List  voucher
+    Route::get('api/voucher/{status}', 'VoucherController@show');
 
     //Buy a Voucher
     Route::post('/api/voucher/buy', 'VoucherController@buy');
 
     //Give A voucher
     Route::post('api/voucher/give', 'VoucherController@give');
+
+    //Redeem A voucher
+    Route::post('api/voucher/redeem', 'VoucherController@redeem');
 
 });
 
