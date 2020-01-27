@@ -9,7 +9,8 @@ export default new Vuex.Store({
         token:null,
         allVouchers:null,
         myVouchers:null,
-        myRedeemedVouchers:null
+        myRedeemedVouchers:null,
+        admin:null
 
     },
 
@@ -22,7 +23,11 @@ export default new Vuex.Store({
         },
         getMyRedeemed(state){
             return state.myRedeemedVouchers
+        },
+        getIfAdmin(state){
+            return state.admin
         }
+
 
 
 
@@ -49,30 +54,6 @@ export default new Vuex.Store({
 
         },
 
-        loggedIn(state) {
-            return state.token != null
-        },
-        destroyToken(state) {
-            if (state.getters.loggedIn) {
-                return new Promise((resolve, reject) => {
-                    axios.post(`http://localhost:5000/api/logout`)
-                        .then(response => {
-                            localStorage.removeItem('access_token')
-                            state.commit('destroyToken')
-                            resolve(response)
-                        }).catch(e => {
-                        localStorage.removeItem('access_token')
-                        state.commit('destroyToken')
-                        reject(e)
-
-                        //this.errors.push(e)
-                        console.log(e)
-                    })
-                })
-
-
-            }
-        },
 
         getAllVouchers(state) {
             axios.get(`/api/voucher/`)
@@ -140,7 +121,28 @@ export default new Vuex.Store({
                 //this.errors.push(e)
                 console.log(e)
             })
-        }
+        },
+        checkRole(state){
+            axios.get(`/user/role`)
+                .then(response => {
+                    console.log(response.data)
+                    state.commit('checkRole',response.data)
+                }).catch(e => {
+                //this.errors.push(e)
+                console.log(e)
+            })
+        },
+        generateVouchers(state, payload){
+            console.log(payload)
+            axios.post(`/api/voucher/generate`,payload)
+                .then(response => {
+                    console.log(response.data)
+                    // state.dispatch('getAllVouchers')
+                }).catch(e => {
+                //this.errors.push(e)
+                console.log(e)
+            })
+        },
 
 
     },
@@ -172,6 +174,10 @@ export default new Vuex.Store({
         getRedeemedVouchers(state,payload) {
             state.myRedeemedVouchers=payload.data
         },
+
+        checkRole(state,payload){
+            state.admin=payload
+        }
 
     }
 })

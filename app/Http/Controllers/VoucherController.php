@@ -9,6 +9,7 @@ use App\Voucher;
 use App\Http\Resources\Voucher as VoucherResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 class VoucherController extends Controller
@@ -25,7 +26,7 @@ class VoucherController extends Controller
 //        $vouchers=Voucher::all();
 //        $vouchers=DB::table('vouchers')->get()->toArray();
         $vouchers = Voucher::status('active')->get();
-        $user=Auth::user()->id;
+        $user = Auth::user()->id;
         //dd($user);
 //        $vouchers=User::find(1)->vouchers()->get();
 //dd($vouchers);
@@ -65,7 +66,7 @@ class VoucherController extends Controller
 
 
         //Get a single voucher
-        $voucher = Voucher::vouchers(Auth::user()->id,$status)->get();
+        $voucher = Voucher::vouchers(Auth::user()->id, $status)->get();
 
         //return single article as a resource
         return new VoucherResource($voucher);
@@ -81,8 +82,8 @@ class VoucherController extends Controller
     {
         //
         $voucher = Voucher::find($id);
-        $voucher->user_id=1;
-        $voucher->status='bought';
+        $voucher->user_id = 1;
+        $voucher->status = 'bought';
     }
 
     /**
@@ -109,7 +110,6 @@ class VoucherController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -121,9 +121,9 @@ class VoucherController extends Controller
         //
         //dd($request);
         $voucher = Voucher::find($request->input('voucher_id'));
-        $voucher->user_id=Auth::user()->id;
-        $voucher->status='bought';
-        $voucher->payment_code='LLWWHY5W2A';
+        $voucher->user_id = Auth::user()->id;
+        $voucher->status = 'bought';
+        $voucher->payment_code = 'LLWWHY5W2A';
         $voucher->save();
     }
 
@@ -138,7 +138,7 @@ class VoucherController extends Controller
         //
         $voucher = Voucher::find($request->input('voucher'));
 //        $voucher->status='bought';
-        $voucher->email=$request->input('email');
+        $voucher->email = $request->input('email');
         $voucher->save();
     }
 
@@ -153,11 +153,55 @@ class VoucherController extends Controller
         //
         $voucher = Voucher::find($request->input('voucher'));
 //        $voucher->status='bought';
-        $voucher->status='redeemed';
+        $voucher->status = 'redeemed';
         $voucher->save();
     }
 
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function generate(Request $request)
+    {
+        $amount = $request->input('amount');
+        $number = $request->input('number');
+        $expiry = $request->input('expiry');
+
+        Log:info($request->input('amount'));
+
+
+
+        for ($i = 0; $i < $number; $i++) {
+
+            Voucher::create([
+                'code' => 'XXXXXX',
+                'amount' => $amount,
+                'status' => 'active',
+                'expiry_date' => $expiry
+            ]);
+
+
+        }
+
+        //
+        //$voucher = Voucher::find($request->input('voucher'));
+//        $voucher->status='bought';
+        //$voucher->status='redeemed';
+        //$voucher->save();
+    }
+
+
+    public function code()
+    {
+
+        $values = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+
+        return code;
+    }
 
 
 }

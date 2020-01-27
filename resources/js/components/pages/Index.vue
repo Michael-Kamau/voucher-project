@@ -1,17 +1,26 @@
 <template>
-    <div class="index">
-<!--        <h2>Welcome to the index page</h2>-->
-        <div class="myPage">
-            <router-view></router-view>
+
+        <div class="index">
+
+            <div class="myPage">
+
+
+                <router-view></router-view>
+
+
+            </div>
+
         </div>
 
-    </div>
 
 </template>
 
 <script>
     export default {
-        name: "index"
+        name: "index",
+        created() {
+            this.$store.dispatch('checkRole')
+        }
     }
 </script>
 

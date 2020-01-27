@@ -20,8 +20,11 @@ Route::get('/', function () {
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin',function(){
 
-    return 'you are admin';
+    return view('adminView');
 })->middleware(['auth','auth.admin']);
+
+//Adding vouchers
+Route::post('/api/voucher/generate','VoucherController@generate');//->middleware(['auth','auth.admin']);
 
 Route::get('/user', 'HomeController@user')->name('user');
 
@@ -49,6 +52,13 @@ Route::group(['middleware' => 'auth'], function () {
     //Redeem A voucher
     Route::post('api/voucher/redeem', 'VoucherController@redeem');
 
+    //Check the role of a user
+    Route::get('user/role', 'HomeController@role');
+
+});
+
+Route::get('logout', function(){
+    return redirect('login')->with(Auth::logout());
 });
 
 

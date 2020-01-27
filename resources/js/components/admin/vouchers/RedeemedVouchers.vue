@@ -4,7 +4,8 @@
 
 <script>
     export default {
-        name: "AddVoucher.vue"
+        name: "RedeemedVouchers.vue"
+
     }
 </script>
 

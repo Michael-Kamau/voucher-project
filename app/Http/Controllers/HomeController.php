@@ -33,10 +33,10 @@ class HomeController extends Controller
 
         return redirect('/user');
 
-        if(Auth::user()->roles('user')){
+        if (Auth::user()->roles('user')) {
 
 
-        }else{
+        } else {
             return view('user');
         }
 
@@ -46,5 +46,20 @@ class HomeController extends Controller
     public function user()
     {
         return view('vueMain');
+    }
+
+
+    public function role()
+
+    {
+        $role = Auth::user()->hasAnyRoles(['admin']);
+        if ($role) {
+            return 'true';
+        } else {
+            return 'false';
+        }
+
+//
+//        return view('vueMain');
     }
 }
