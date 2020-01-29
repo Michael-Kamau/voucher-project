@@ -28,8 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
          $schedule->command('daily:updateStatus')
-                  ->everyMinute();
-
+                  ->daily();
 
     }
 

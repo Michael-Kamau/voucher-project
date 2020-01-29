@@ -191,7 +191,7 @@ class VoucherController extends Controller
             $voucher->email = $request->input('email');
             $voucher->save();
             //event(new BuyVoucherNotificationEvent(Auth::user()->name, Auth::user()->email, "One Voucher given"));
-            Mail::to($request->input('email'))->send(new GivenVoucherMail(Auth::user()->name,$verification_code));
+            Mail::to($request->input('email'))->send(new GivenVoucherMail(Auth::user()->name, $verification_code));
 
         } else {
             return response('Record Not found', 404)
@@ -262,7 +262,7 @@ class VoucherController extends Controller
         for ($i = 0; $i < $number; $i++) {
 
             Voucher::create([
-                'code' => 'XXXXXX',
+                'code' => rand(99999, 10000000),
                 'amount' => $amount,
                 'status' => 'active',
                 'expiry_date' => $expiry

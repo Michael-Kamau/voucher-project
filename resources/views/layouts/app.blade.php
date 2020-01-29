@@ -19,10 +19,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div id="app main-header">
+        <nav class="navbar navbar-expand-md navbar-white bg-blue-100 shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><i class="fas fa-ticket-alt"></i> &nbsp; &nbsp;
                     {{ config('app.name', 'CyVouchers') }}
@@ -73,7 +75,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-1">
             @yield('content')
         </main>
     </div>

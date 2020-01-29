@@ -1,0 +1,43 @@
+//
+
+body{
+    .app{
+        nav{
+            background-color: #1d68a7;
+            color: white;
+        }
+    }
+
+    .homepage{
+        height: 700px;
+        width: 100%;
+        padding: 200px 20px 10px 20px;
+        margin: auto;
+        background:
+            /* top, transparent red */
+            linear-gradient(to right,
+                rgba(0, 0, 0, 0.7),
+                rgba(0, 0, 0, 0.2)
+            ),
+                /* bottom, image */
+            url(/../images/vouchers.jpg);
+        background-size: cover;
+        background-position: center;
+
+        .homepage-content{
+            color: white;
+            margin: auto;
+            align-content: center;
+            padding: 50px 20px 10px 20px;
+            background-color: rgba(10, 10, 10, 0.31);
+            border-radius: 10px;
+
+            h1{
+                font-size: 30px;
+
+            }
+        }
+
+    }
+}
+

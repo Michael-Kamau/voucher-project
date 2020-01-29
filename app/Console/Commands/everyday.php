@@ -38,8 +38,10 @@ class everyday extends Command
      */
     public function handle()
     {
-        //
-        DB::table('vouchers')->delete();
-        echo "Operation done";
+
+
+        DB::table('vouchers')
+            ->where('expiry_date', '<', date("Y-m-d"))
+            ->update(['status' => 'expired']);
     }
 }

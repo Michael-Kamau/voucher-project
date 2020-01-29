@@ -11,8 +11,16 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
-    return view('welcome');
+    if($user = Auth::user())
+    {
+        return redirect('/home');
+    }else{
+        return view('welcome');
+    }
+
 });
 
 //Auth::routes();

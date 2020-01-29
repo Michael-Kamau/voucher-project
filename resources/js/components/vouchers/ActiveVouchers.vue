@@ -10,7 +10,7 @@
             <table class="table-responsive  ">
                 <thead>
                 <tr>
-                    <th class="w-1/5 px-1 py-2">ID</th>
+                    <th class="w-1/5 px-2 py-2">Voucher Code</th>
                     <!--                    <th class="w-1/5 px-4 py-2">Code</th>-->
                     <th class="w-1/5 px-2 py-2">Amount</th>
                     <th class="w-1/5 px-2 py-2">Expiry Date</th>
@@ -19,9 +19,9 @@
                 </thead>
                 <tbody>
                 <tr v-for="voucher in this.$store.getters.getAllVouchers" :key="voucher.id">
-                    <td class="border px-2 py-2">{{voucher.id}}</td>
+                    <td class="border px-2 py-2">{{voucher.code}}</td>
                     <!--                    <td class="border px-4 py-2">{{voucher.code}}</td>-->
-                    <td class="border px-2 py-2">{{voucher.amount}}</td>
+                    <td class="border px-2 py-2">Ksh.{{voucher.amount}}</td>
                     <td class="border px-2 py-2">{{voucher.expiry_date}}</td>
                     <td class="border px-2 py-2">
                         <button @click="show(voucher.id,voucher.code)"

@@ -4,6 +4,9 @@
 // Variables
 @import 'variables';
 
+// Custom Styles
+@import 'custom';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -19,3 +22,6 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+

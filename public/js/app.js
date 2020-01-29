@@ -39555,11 +39555,11 @@ var render = function() {
           _vm._l(this.$store.getters.getAllVouchers, function(voucher) {
             return _c("tr", { key: voucher.id }, [
               _c("td", { staticClass: "border px-2 py-2" }, [
-                _vm._v(_vm._s(voucher.id))
+                _vm._v(_vm._s(voucher.code))
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "border px-2 py-2" }, [
-                _vm._v(_vm._s(voucher.amount))
+                _vm._v("Ksh." + _vm._s(voucher.amount))
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "border px-2 py-2" }, [
@@ -39811,7 +39811,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticClass: "w-1/5 px-1 py-2" }, [_vm._v("ID")]),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Voucher Code")]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Amount")]),
         _vm._v(" "),
