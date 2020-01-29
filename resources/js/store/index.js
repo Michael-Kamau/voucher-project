@@ -92,13 +92,17 @@ export default new Vuex.Store({
 
         },
         buyVoucher(state,payload){
-            axios.post(`/api/voucher/buy`,payload)
-                .then(response => {
-                    console.log(response.data)
-                   state.dispatch('getAllVouchers')
-                }).catch(e => {
-                //this.errors.push(e)
-                console.log(e)
+            return new Promise((resolve, reject) => {
+                axios.post(`/api/voucher/buy`, payload)
+                    .then(response => {
+                        console.log(response.data)
+                        state.dispatch('getAllVouchers')
+                        resolve(response)
+                    }).catch(e => {
+                    //this.errors.push(e)
+                    reject(e)
+                    console.log(e)
+                })
             })
 
         },
@@ -113,14 +117,18 @@ export default new Vuex.Store({
             })
         },
         redeemVoucher(state,payload){
-            axios.post(`/api/voucher/redeem`,payload)
-                .then(response => {
-                    console.log(response.data)
-                    state.dispatch('getMyVouchers')
-                }).catch(e => {
-                //this.errors.push(e)
-                console.log(e)
+            return new Promise((resolve, reject) => {
+                axios.post(`/api/voucher/redeem`,payload)
+                    .then(response => {
+                        console.log(response.data)
+                        state.dispatch('getMyVouchers')
+                        resolve(response)
+                    }).catch(e => {
+                    reject(e)
+                    console.log(e)
+                })
             })
+
         },
         checkRole(state){
             axios.get(`/user/role`)
@@ -134,14 +142,17 @@ export default new Vuex.Store({
         },
         generateVouchers(state, payload){
             console.log(payload)
-            axios.post(`/api/voucher/generate`,payload)
-                .then(response => {
-                    console.log(response.data)
-                    // state.dispatch('getAllVouchers')
-                }).catch(e => {
-                //this.errors.push(e)
-                console.log(e)
+            return new Promise((resolve, reject) => {
+                axios.post(`/api/voucher/generate`,payload)
+                    .then(response => {
+                        console.log(response.data)
+                        resolve(response)
+                    }).catch(e => {
+                    reject(e)
+                    console.log(e)
+                })
             })
+
         },
 
 

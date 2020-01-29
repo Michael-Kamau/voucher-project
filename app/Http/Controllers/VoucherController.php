@@ -254,9 +254,10 @@ class VoucherController extends Controller
         $amount = $request->input('amount');
         $number = $request->input('number');
         $expiry = $request->input('expiry');
+        $type = $request->input('product');
 
-        Log:
-        info($request->input('amount'));
+        Log::alert($type);
+
 
 
         for ($i = 0; $i < $number; $i++) {
@@ -265,6 +266,7 @@ class VoucherController extends Controller
                 'code' => rand(99999, 10000000),
                 'amount' => $amount,
                 'status' => 'active',
+                'type' => $type,
                 'expiry_date' => $expiry
             ]);
 

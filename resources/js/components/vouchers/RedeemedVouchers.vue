@@ -32,6 +32,7 @@
                 <th class="w-2/9 px-4 py-2">Code</th>
                 <th class="w-2/9 px-4 py-2">Amount</th>
                 <th class="w-2/9 px-4 py-2">Status</th>
+                <th class="w-2/9 px-4 py-2">Product</th>
                 <th class="w-2/9 px-4 py-2">Expiry Date</th>
             </tr>
             </thead>
@@ -41,6 +42,7 @@
                 <td class="border px-4 py-2">{{voucher.code}}</td>
                 <td class="border px-4 py-2">{{voucher.amount}}</td>
                 <td class="border px-4 py-2">{{voucher.status}}</td>
+                <td class="border px-4 py-2">{{voucher.type}}</td>
                 <td class="border px-4 py-2">{{voucher.expiry_date}}</td>
 
             </tr>

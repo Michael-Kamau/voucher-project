@@ -11,7 +11,7 @@ class Voucher extends Model
     {
         return $this->belongsTo('App\User');
     }
-    protected $fillable = ['user_id','code','amount','status','expiry_date'];
+    protected $fillable = ['user_id','code','amount','status','expiry_date','type'];
 
     //my query scopes
     public function scopeStatus($query, $status)

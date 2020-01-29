@@ -1,9 +1,6 @@
 <template>
     <div class="allVouchers">
         <h2>All Vouchers</h2>
-        <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert" v-if="wait">
-            <p class="font-bold">Please Wait</p>
-        </div>
         <div class="myTable">
 
 
@@ -11,6 +8,7 @@
                 <thead>
                 <tr>
                     <th class="w-1/5 px-2 py-2">Voucher Code</th>
+                    <th class="w-1/5 px-2 py-2">Voucher Product</th>
                     <!--                    <th class="w-1/5 px-4 py-2">Code</th>-->
                     <th class="w-1/5 px-2 py-2">Amount</th>
                     <th class="w-1/5 px-2 py-2">Expiry Date</th>
@@ -20,8 +18,9 @@
                 <tbody>
                 <tr v-for="voucher in this.$store.getters.getAllVouchers" :key="voucher.id">
                     <td class="border px-2 py-2">{{voucher.code}}</td>
-                    <!--                    <td class="border px-4 py-2">{{voucher.code}}</td>-->
+                    <td class="border px-2 py-2">{{voucher.type}}</td>
                     <td class="border px-2 py-2">Ksh.{{voucher.amount}}</td>
+
                     <td class="border px-2 py-2">{{voucher.expiry_date}}</td>
                     <td class="border px-2 py-2">
                         <button @click="show(voucher.id,voucher.code)"
@@ -43,7 +42,12 @@
                 <modal v-on:buy="buyVoucher()" name="buy-modal" @before-open="beforeOpen" :adaptive="true" :height="430"
                        :width="400"
                        v-bind:vouchers="vouchers">
-                    <!--                    <h1>code{{foo}}</h1>-->
+                    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert" v-if="wait">
+                        <p class="font-normal">Processing Transaction...</p>
+                    </div>
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert" v-if="error">
+                        <p class="font-bold">Please Fill All the fields</p>
+                    </div>
                     <form class="w-full max-w-sm p-6">
                         <div class="md:flex-row  mb-6">
                             <div class="">
@@ -60,7 +64,7 @@
                                     <div class="">
                                         <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
                                                for="inline-number">
-                                            Transaction Code(leave blank for COD)
+                                            Transaction Code(Fill CASH for COD)
                                         </label>
                                     </div>
                                     <div class="md:w-2/3">
@@ -109,7 +113,8 @@
             return {
                 showModal: false,
                 vouchers: {},
-                wait:false
+                wait:false,
+                error:null
             }
 
         },
@@ -129,12 +134,21 @@
             //     this.$store.dispatch('buyVoucher', {'voucher_id': voucherId});
             // },
             buyVoucher() {
-                console.log(this.vouchers)
-                this.wait=true
-                this.$store.dispatch('buyVoucher', this.vouchers);
-                this.$modal.hide('buy-modal');
-                this.vouchers={}
-                this.wait=false
+                this.error=null
+                if(this.vouchers.code==null || this.vouchers.transactionCode ==null || this.vouchers.method==null){
+                    this.error=true
+                }else{
+                    console.log(this.vouchers)
+                    this.wait=true
+                    this.$store.dispatch('buyVoucher', this.vouchers)
+                        .then(response =>{
+                            this.$modal.hide('buy-modal');
+                            this.vouchers={}
+                            this.wait=false
+                        })
+                }
+
+
             },
             show(id, code) {
 

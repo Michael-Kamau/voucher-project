@@ -2109,18 +2109,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "generate",
   data: function data() {
     return {
-      form: {}
+      form: {},
+      error: null,
+      success: null,
+      wait: null
     };
   },
   methods: {
     generateVouchers: function generateVouchers() {
-      this.$store.dispatch('generateVouchers', this.form);
-      this.success = "success";
-      this.voucher = {};
+      var _this = this;
+
+      this.error = null;
+
+      if (this.form.amount == null || this.form.product == null || this.form.expiry == null) {
+        this.error = true;
+      } else {
+        this.wait = true;
+        this.$store.dispatch('generateVouchers', this.form).then(function (response) {
+          _this.success = "success";
+          _this.form = {};
+          _this.wait = false;
+        });
+      }
     }
   },
   created: function created() {
@@ -2380,6 +2401,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ActiveVouchers.vue",
@@ -2390,7 +2415,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       showModal: false,
       vouchers: {},
-      wait: false
+      wait: false,
+      error: null
     };
   },
   computed: {
@@ -2408,12 +2434,22 @@ __webpack_require__.r(__webpack_exports__);
     //     this.$store.dispatch('buyVoucher', {'voucher_id': voucherId});
     // },
     buyVoucher: function buyVoucher() {
-      console.log(this.vouchers);
-      this.wait = true;
-      this.$store.dispatch('buyVoucher', this.vouchers);
-      this.$modal.hide('buy-modal');
-      this.vouchers = {};
-      this.wait = false;
+      var _this = this;
+
+      this.error = null;
+
+      if (this.vouchers.code == null || this.vouchers.transactionCode == null || this.vouchers.method == null) {
+        this.error = true;
+      } else {
+        console.log(this.vouchers);
+        this.wait = true;
+        this.$store.dispatch('buyVoucher', this.vouchers).then(function (response) {
+          _this.$modal.hide('buy-modal');
+
+          _this.vouchers = {};
+          _this.wait = false;
+        });
+      }
     },
     show: function show(id, code) {
       this.vouchers.id = id;
@@ -2524,6 +2560,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2797,12 +2835,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserVoucher.vue",
   data: function data() {
     return {
-      details: {}
+      details: {},
+      voucher: {},
+      wait: null
     };
   },
   methods: {
@@ -2810,22 +2867,32 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.details.email != null) {
-        console.log(this.details);
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/voucher/give", this.details).then(function (response) {
-          console.log(response.data);
+        this.wait = true;
+        return new Promise(function (resolve, reject) {
+          console.log(_this.details);
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/voucher/give", _this.details).then(function (response) {
+            console.log(response.data);
 
-          _this.$store.dispatch('getMyVouchers');
+            _this.$store.dispatch('getMyVouchers');
 
-          _this.$modal.hide('give-modal');
-        })["catch"](function (e) {
-          //this.errors.push(e)
-          console.log(e);
+            _this.$modal.hide('give-modal');
+          })["catch"](function (e) {
+            //this.errors.push(e)
+            console.log(e);
+          }).then(function (response) {
+            _this.wait = null;
+          });
         });
       }
     },
     redeemVoucher: function redeemVoucher(id) {
+      var _this2 = this;
+
+      this.wait = true;
       this.$store.dispatch('redeemVoucher', {
         'voucher': id
+      }).then(function (response) {
+        _this2.wait = false;
       });
     },
     show: function show(id) {
@@ -39060,19 +39127,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "generateVoucher" }, [
+    _c("h2", [_vm._v("Generate Vouchers")]),
+    _vm._v(" "),
     _vm.error
       ? _c(
           "div",
           {
             staticClass:
-              "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative",
+              "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-3",
             attrs: { role: "alert" }
           },
           [
-            _c("strong", { staticClass: "font-bold" }, [_vm._v("Error!")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "block sm:inline" }, [
-              _vm._v("Incorrect details Provided.")
+            _c("p", { staticClass: "font-bold" }, [
+              _vm._v("Please Fill All the fields")
             ])
           ]
         )
@@ -39083,22 +39150,16 @@ var render = function() {
           "div",
           {
             staticClass:
-              "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3",
+              "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-3",
             attrs: { role: "alert" }
           },
           [
-            _c("p", { staticClass: "font-bold" }, [_vm._v("Success")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-sm" }, [
-              _vm._v(
-                "You have Successfully claimed your voucher. You can view it in your vouchers page"
-              )
+            _c("p", { staticClass: "font-bold" }, [
+              _vm._v("Voucher Generation Successful")
             ])
           ]
         )
       : _vm._e(),
-    _vm._v(" "),
-    _c("h2", [_vm._v("Generate Vouchers")]),
     _vm._v(" "),
     _c("form", { staticClass: "w-full max-w-sm" }, [
       _c("div", { staticClass: "md:flex md:items-left mb-6" }, [
@@ -39118,7 +39179,7 @@ var render = function() {
               "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
             attrs: {
               id: "inline-amount",
-              type: "text",
+              type: "number",
               placeholder: "Price of Vouchers"
             },
             domProps: { value: _vm.form.amount },
@@ -39133,6 +39194,60 @@ var render = function() {
           })
         ])
       ]),
+      _vm._v(" "),
+      _c("label", { staticClass: "block mt-4" }, [
+        _c(
+          "span",
+          {
+            staticClass:
+              "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
+          },
+          [_vm._v("Select Product")]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.product,
+                expression: "form.product"
+              }
+            ],
+            staticClass: "form-select mt-1 block w-full",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "product",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", [_vm._v("C.M.M.F")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("C.R.E")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("C.H.Y.F")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("GIFT")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("br", { staticClass: "mb-1" }),
       _vm._v(" "),
       _c("div", { staticClass: "md:flex md:items-left mb-6" }, [
         _vm._m(1),
@@ -39151,7 +39266,7 @@ var render = function() {
               "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
             attrs: {
               id: "inline-number",
-              type: "text",
+              type: "number",
               placeholder: "Number of Vouchers"
             },
             domProps: { value: _vm.form.number },
@@ -39229,10 +39344,10 @@ var staticRenderFns = [
         "label",
         {
           staticClass:
-            "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
+            "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4",
           attrs: { for: "inline-amount" }
         },
-        [_vm._v("\n                    Voucher Amount\n                ")]
+        [_vm._v("\n                    Enter Amount\n                ")]
       )
     ])
   },
@@ -39245,7 +39360,7 @@ var staticRenderFns = [
         "label",
         {
           staticClass:
-            "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
+            "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4",
           attrs: { for: "inline-number" }
         },
         [_vm._v("\n                    Voucher Number\n                ")]
@@ -39261,7 +39376,7 @@ var staticRenderFns = [
         "label",
         {
           staticClass:
-            "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
+            "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4",
           attrs: { for: "inline-number" }
         },
         [_vm._v("\n                    Voucher Expiry date\n                ")]
@@ -39534,18 +39649,6 @@ var render = function() {
   return _c("div", { staticClass: "allVouchers" }, [
     _c("h2", [_vm._v("All Vouchers")]),
     _vm._v(" "),
-    _vm.wait
-      ? _c(
-          "div",
-          {
-            staticClass:
-              "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3",
-            attrs: { role: "alert" }
-          },
-          [_c("p", { staticClass: "font-bold" }, [_vm._v("Please Wait")])]
-        )
-      : _vm._e(),
-    _vm._v(" "),
     _c("div", { staticClass: "myTable" }, [
       _c("table", { staticClass: "table-responsive  " }, [
         _vm._m(0),
@@ -39556,6 +39659,10 @@ var render = function() {
             return _c("tr", { key: voucher.id }, [
               _c("td", { staticClass: "border px-2 py-2" }, [
                 _vm._v(_vm._s(voucher.code))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "border px-2 py-2" }, [
+                _vm._v(_vm._s(voucher.type))
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "border px-2 py-2" }, [
@@ -39614,6 +39721,38 @@ var render = function() {
               }
             },
             [
+              _vm.wait
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _c("p", { staticClass: "font-normal" }, [
+                        _vm._v("Processing Transaction...")
+                      ])
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.error
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _c("p", { staticClass: "font-bold" }, [
+                        _vm._v("Please Fill All the fields")
+                      ])
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c("form", { staticClass: "w-full max-w-sm p-6" }, [
                 _c("div", { staticClass: "md:flex-row  mb-6" }, [
                   _c("div", {}, [
@@ -39683,7 +39822,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                        Transaction Code(leave blank for COD)\n                                    "
+                                "\n                                        Transaction Code(Fill CASH for COD)\n                                    "
                               )
                             ]
                           )
@@ -39812,6 +39951,10 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Voucher Code")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [
+          _vm._v("Voucher Product")
+        ]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Amount")]),
         _vm._v(" "),
@@ -40012,6 +40155,10 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "border px-4 py-2" }, [
+                _vm._v(_vm._s(voucher.type))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "border px-4 py-2" }, [
                 _vm._v(_vm._s(voucher.expiry_date))
               ])
             ])
@@ -40036,6 +40183,8 @@ var staticRenderFns = [
         _c("th", { staticClass: "w-2/9 px-4 py-2" }, [_vm._v("Amount")]),
         _vm._v(" "),
         _c("th", { staticClass: "w-2/9 px-4 py-2" }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-2/9 px-4 py-2" }, [_vm._v("Product")]),
         _vm._v(" "),
         _c("th", { staticClass: "w-2/9 px-4 py-2" }, [_vm._v("Expiry Date")])
       ])
@@ -40261,6 +40410,22 @@ var render = function() {
     [
       _c("h2", [_vm._v("My vouchers")]),
       _vm._v(" "),
+      _vm.wait
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-3",
+              attrs: { role: "alert" }
+            },
+            [
+              _c("p", { staticClass: "font-bold" }, [_vm._v("Please wait")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Processing...")])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "myTable" }, [
         _c("table", { staticClass: "table-responsive" }, [
           _vm._m(0),
@@ -40297,7 +40462,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Redeem")]
+                    [
+                      _vm._v(
+                        "\n                        Redeem\n                    "
+                      )
+                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -40313,7 +40482,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Give")]
+                    [
+                      _vm._v(
+                        "\n                        Give\n                    "
+                      )
+                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -40342,6 +40515,8 @@ var render = function() {
         [
           _c("form", { staticClass: "w-full max-w-sm p-6" }, [
             _c("div", { staticClass: "md:flex-row  mb-6" }, [
+              _vm.wait ? _c("p", [_vm._v("Processing...")]) : _vm._e(),
+              _vm._v(" "),
               _c("div", {}, [
                 _c(
                   "label",
@@ -57660,12 +57835,16 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
       });
     },
     buyVoucher: function buyVoucher(state, payload) {
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/buy", payload).then(function (response) {
-        console.log(response.data);
-        state.dispatch('getAllVouchers');
-      })["catch"](function (e) {
-        //this.errors.push(e)
-        console.log(e);
+      return new Promise(function (resolve, reject) {
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/buy", payload).then(function (response) {
+          console.log(response.data);
+          state.dispatch('getAllVouchers');
+          resolve(response);
+        })["catch"](function (e) {
+          //this.errors.push(e)
+          reject(e);
+          console.log(e);
+        });
       });
     },
     giveVoucher: function giveVoucher(state, payload) {
@@ -57678,12 +57857,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
       });
     },
     redeemVoucher: function redeemVoucher(state, payload) {
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/redeem", payload).then(function (response) {
-        console.log(response.data);
-        state.dispatch('getMyVouchers');
-      })["catch"](function (e) {
-        //this.errors.push(e)
-        console.log(e);
+      return new Promise(function (resolve, reject) {
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/redeem", payload).then(function (response) {
+          console.log(response.data);
+          state.dispatch('getMyVouchers');
+          resolve(response);
+        })["catch"](function (e) {
+          reject(e);
+          console.log(e);
+        });
       });
     },
     checkRole: function checkRole(state) {
@@ -57697,11 +57879,14 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     },
     generateVouchers: function generateVouchers(state, payload) {
       console.log(payload);
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/generate", payload).then(function (response) {
-        console.log(response.data); // state.dispatch('getAllVouchers')
-      })["catch"](function (e) {
-        //this.errors.push(e)
-        console.log(e);
+      return new Promise(function (resolve, reject) {
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/voucher/generate", payload).then(function (response) {
+          console.log(response.data);
+          resolve(response);
+        })["catch"](function (e) {
+          reject(e);
+          console.log(e);
+        });
       });
     }
   },
