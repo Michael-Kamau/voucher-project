@@ -23,9 +23,9 @@
         created() {
             this.$store.dispatch('checkRole')
         },
-        // mounted(){
-        //     router.push('/allVouchers')
-        // }
+        mounted(){
+            router.push('/allVouchers')
+        }
     }
 </script>
 

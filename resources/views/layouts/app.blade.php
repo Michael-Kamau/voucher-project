@@ -23,7 +23,7 @@
 
 </head>
 <body>
-    <div id="app main-header">
+    <div id="app">
         <nav class="navbar navbar-expand-md navbar-white bg-blue-100 shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><i class="fas fa-ticket-alt"></i> &nbsp; &nbsp;

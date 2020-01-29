@@ -2205,21 +2205,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NavBar",
   methods: {
@@ -2282,10 +2267,10 @@ __webpack_require__.r(__webpack_exports__);
   name: "index",
   created: function created() {
     this.$store.dispatch('checkRole');
-  } // mounted(){
-  //     router.push('/allVouchers')
-  // }
-
+  },
+  mounted: function mounted() {
+    _router__WEBPACK_IMPORTED_MODULE_0__["default"].push('/allVouchers');
+  }
 });
 
 /***/ }),
@@ -39506,7 +39491,7 @@ var render = function() {
                   },
                   [
                     _c("router-link", { attrs: { to: "/admin" } }, [
-                      _vm._v("Admin Panel")
+                      _vm._v("Users")
                     ])
                   ],
                   1
@@ -39556,7 +39541,7 @@ var staticRenderFns = [
       { staticClass: "flex items-center flex-shrink-0 text-white mr-6" },
       [
         _c("i", { staticClass: "fas fa-ticket-alt" }),
-        _vm._v("    \n            "),
+        _vm._v("    \n        "),
         _c("span", { staticClass: "font-semibold text-xl tracking-tight" }, [
           _vm._v("Cytonn Vouchers")
         ])

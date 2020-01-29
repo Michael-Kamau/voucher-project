@@ -1,19 +1,4 @@
 <template>
-<!--    <nav class="navbar navbar-expand-sm navbar-dark bg-info mb-2">-->
-<!--        <div class="container">-->
-<!--            <a href="#" class="navbar-brand">User Dashboard</a>-->
-<!--        </div>-->
-<!--        <div class="navbar">-->
-<!--            <ul class="menu">-->
-
-<!--                <li v-if="true"><a><router-link to="/allVouchers">All Vouchers</router-link></a></li>-->
-<!--                <li v-if="true"><a><router-link to="/myVouchers">My Vouchers</router-link></a></li>-->
-<!--                <li v-if="true"><a><router-link to="/redeemedVouchers">Redeemed</router-link></a></li>-->
-<!--                <li v-if="this.$store.getters.getIfAdmin"><a><router-link to="/admin">Admin</router-link></a></li>-->
-<!--                <li v-if="this.$store.getters.getIfAdmin"><a><router-link to="/Generate">Add Vouchers</router-link></a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </nav>-->
 
     <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
@@ -43,7 +28,7 @@
 
             </div>
             <div >
-                <a v-if="this.$store.getters.getIfAdmin"href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"><router-link to="/admin">Admin Panel</router-link></a>
+                <a v-if="this.$store.getters.getIfAdmin"href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"><router-link to="/admin">Users</router-link></a>
                 <a v-if="this.$store.getters.getIfAdmin"href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"><router-link to="/generate">Generate Vouchers</router-link></a>
                 <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0" @click="logout">Logout</a>
             </div>
