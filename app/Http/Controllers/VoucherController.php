@@ -32,7 +32,7 @@ class VoucherController extends Controller
 //        $vouchers=Voucher::paginate(15);
 //        $vouchers=Voucher::all();
 //        $vouchers=DB::table('vouchers')->get()->toArray();
-        $vouchers = Voucher::status('active')->get();
+        $vouchers = \App\Voucher::status('active')->get();
         $user = Auth::user()->id;
         //dd($user);
 //        $vouchers=User::find(1)->vouchers()->get();
