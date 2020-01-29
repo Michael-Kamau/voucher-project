@@ -40340,7 +40340,7 @@ var render = function() {
                 "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
               attrs: {
                 id: "inline-code",
-                type: "text",
+                type: "number",
                 placeholder: "Voucher Code"
               },
               domProps: { value: _vm.voucher.voucher },
@@ -40373,7 +40373,7 @@ var render = function() {
                 "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
               attrs: {
                 id: "inline-verification",
-                type: "text",
+                type: "number",
                 placeholder: "Verification Code"
               },
               domProps: { value: _vm.voucher.verification },
