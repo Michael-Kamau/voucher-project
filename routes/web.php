@@ -18,10 +18,24 @@ Route::get('/', function () {
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/admin',function(){
 
     return view('adminView');
 })->middleware(['auth','auth.admin']);
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+//Fetching the vouchers for a particular user from the db
+Route::get('/userVouchers/{id}','VoucherController@userVouchers'
+
+)->middleware(['auth','auth.admin']);
+
+//Fetching all the users from the db
+Route::get('/users/all','VoucherController@usersAll'
+
+)->middleware(['auth','auth.admin']);
 
 //Adding vouchers
 Route::post('/api/voucher/generate','VoucherController@generate');//->middleware(['auth','auth.admin']);

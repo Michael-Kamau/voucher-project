@@ -29,18 +29,16 @@
 <!--            </tr>-->
 <!--        </table>-->
 
-        <table class="table-fixed">
+        <table class="table-responsive">
             <thead>
             <tr>
-                <th class="w-1/12 px-1 py-2">ID</th>
-                <th class="w-1/12 px-4 py-2">Code</th>
-                <th class="w-1/12 px-4 py-2">Amount</th>
-                <th class="w-1/12 px-4 py-2">Status</th>
-                <th class="w-1/12 px-4 py-2">Pay Code</th>
-                <th class="w-3/12 px-1 py-2">Expiry Date</th>
-                <th class="w-1/12 px-4 py-2">Redeem</th>
-                <th class="w-1/12 px-4 py-2">Give</th>
-                <th class="w-1/12 px-4 py-2">Given To</th>
+                <th class="w-1/10 px-1 py-2">ID</th>
+                <th class="w-1/10 px-4 py-2">Code</th>
+                <th class="w-1/10 px-4 py-2">Amount</th>
+                <th class="w-2/10 px-1 py-2">Expiry Date</th>
+                <th class="w-1/10 px-4 py-2">Redeem</th>
+                <th class="w-1/10 px-4 py-2">Give</th>
+                <th class="w-1/10 px-4 py-2">Given To</th>
 
 
             </tr>
@@ -48,15 +46,13 @@
             <tbody>
             <tr v-for="voucher in this.$store.getters.getMyVouchers" :key="voucher.id">
 
-                <td class="w-1/12 px-1 py-2">{{voucher.id}}</td>
-                <td class="w-1/12 px-4 py-2">{{voucher.code}}</td>
-                <td class="w-1/12 px-4 py-2">{{voucher.amount}}</td>
-                <td class="w-1/12 px-4 py-2">{{voucher.status}}</td>
-                <td class="w-1/12 px-4 py-2">{{voucher.payment_code}}</td>
-                <td class="w-4/12 px-1 py-2">{{voucher.expiry_date}}</td>
-                <td class="w-1/12 px-4 py-2"><button @click="redeemVoucher(voucher.id)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Redeem</button></td>
-                <td class="w-1/12 px-4 py-2"><button @click="show(voucher.id)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Give</button></td>
-                <td class="w-1/12 px-4 py-2">{{voucher.email}}</td>
+                <td class="w-1/10 px-1 py-2">{{voucher.id}}</td>
+                <td class="w-1/10 px-4 py-2">{{voucher.code}}</td>
+                <td class="w-1/10 px-4 py-2">{{voucher.amount}}</td>
+                <td class="w-2/10 px-1 py-2">{{voucher.expiry_date}}</td>
+                <td class="w-1/10 px-4 py-2"><button @click="redeemVoucher(voucher.id)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Redeem</button></td>
+                <td class="w-1/10 px-4 py-2"><button @click="show(voucher.id)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Give</button></td>
+                <td class="w-1/10 px-4 py-2">{{voucher.email}}</td>
             </tr>
             </tbody>
         </table>

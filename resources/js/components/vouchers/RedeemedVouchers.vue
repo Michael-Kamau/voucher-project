@@ -25,7 +25,7 @@
 
 
 
-        <table class="table-fixed">
+        <table class="table-responsive">
             <thead>
             <tr>
                 <th class="w-1/9 px-4 py-2">Id</th>

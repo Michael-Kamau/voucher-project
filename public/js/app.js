@@ -1930,6 +1930,61 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _includes_NavBar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../includes/NavBar.vue */ "./resources/js/components/admin/includes/NavBar.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1938,10 +1993,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdminPage.vue",
-  components: {
-    adminNavbar: _includes_NavBar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  data: function data() {
+    return {
+      users: {},
+      userVouchers: {}
+    };
+  },
+  components: {},
+  methods: {
+    userData: function userData(id) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/userVouchers/" + id).then(function (response) {
+        console.log(response.data);
+        _this.userVouchers = response.data.data;
+      })["catch"](function (e) {
+        //this.errors.push(e)
+        console.log(e);
+      });
+    },
+    hideDetails: function hideDetails() {
+      this.userVouchers = {};
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/users/all").then(function (response) {
+      console.log(response.data);
+      _this2.users = response.data.data;
+    })["catch"](function (e) {
+      //this.errors.push(e)
+      console.log(e);
+    });
   }
 });
 
@@ -2014,6 +2101,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "generate",
   data: function data() {
@@ -2023,8 +2118,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     generateVouchers: function generateVouchers() {
-      this.$store.dispatch('generateVouchers', this.form); // this.$router.go('https://www.facebook.com')
-      //window.location.href = "/logout"
+      this.$store.dispatch('generateVouchers', this.form);
+      this.success = "success";
+      this.voucher = {};
     }
   },
   created: function created() {
@@ -2279,6 +2375,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ActiveVouchers.vue",
@@ -2288,8 +2389,18 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       showModal: false,
-      vouchers: {}
+      vouchers: {},
+      wait: false
     };
+  },
+  computed: {
+    canBuy: function canBuy() {
+      if (this.vouchers.code == null || this.vouchers.transactionCode == null || this.vouchers.method == null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   },
   methods: {
     // buyVoucher(voucherId) {
@@ -2298,8 +2409,11 @@ __webpack_require__.r(__webpack_exports__);
     // },
     buyVoucher: function buyVoucher() {
       console.log(this.vouchers);
+      this.wait = true;
       this.$store.dispatch('buyVoucher', this.vouchers);
       this.$modal.hide('buy-modal');
+      this.vouchers = {};
+      this.wait = false;
     },
     show: function show(id, code) {
       this.vouchers.id = id;
@@ -2589,10 +2703,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
 //
 //
 //
@@ -38798,9 +38908,136 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "AdminPage" }, [_c("adminNavbar")], 1)
+  return _c("div", { staticClass: "AdminPage" }, [
+    _c("h2", [_vm._v("Users")]),
+    _vm._v(" "),
+    !_vm.userVouchers.length
+      ? _c("table", { staticClass: "table-responsive" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.users, function(user) {
+              return _c("tr", { key: user.id }, [
+                _c("td", { staticClass: "border px-2 py-2" }, [
+                  _vm._v(_vm._s(user.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-2 py-2" }, [
+                  _vm._v(_vm._s(user.name))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-2 py-2" }, [
+                  _vm._v(_vm._s(user.email))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-2 py-2" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded",
+                      on: {
+                        click: function($event) {
+                          return _vm.userData(user.id)
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    View\n                ")]
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.userVouchers.length
+      ? _c("div", { staticClass: "user-details" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded",
+              on: {
+                click: function($event) {
+                  return _vm.hideDetails()
+                }
+              }
+            },
+            [_vm._v("\n            Back to Users\n        ")]
+          ),
+          _vm._v(" "),
+          _c("table", { staticClass: "table-responsive" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.userVouchers, function(voucher) {
+                return _c("tr", { key: voucher.id }, [
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v(_vm._s(voucher.code))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v(_vm._s(voucher.status))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v(_vm._s(voucher.payment_method))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v(_vm._s(voucher.payment_code))
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      : _vm._e()
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "w-1/5 px-1 py-2" }, [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "w-1/5 px-1 py-2" }, [_vm._v("Voucher Code")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [
+          _vm._v("Voucher Status")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [
+          _vm._v("Payment Method")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Payment Code")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38823,7 +39060,46 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "generateVoucher" }, [
-    _vm._v("\n        Generate Vouchers\n        "),
+    _vm.error
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative",
+            attrs: { role: "alert" }
+          },
+          [
+            _c("strong", { staticClass: "font-bold" }, [_vm._v("Error!")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "block sm:inline" }, [
+              _vm._v("Incorrect details Provided.")
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.success
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3",
+            attrs: { role: "alert" }
+          },
+          [
+            _c("p", { staticClass: "font-bold" }, [_vm._v("Success")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-sm" }, [
+              _vm._v(
+                "You have Successfully claimed your voucher. You can view it in your vouchers page"
+              )
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Generate Vouchers")]),
+    _vm._v(" "),
     _c("form", { staticClass: "w-full max-w-sm" }, [
       _c("div", { staticClass: "md:flex md:items-left mb-6" }, [
         _vm._m(0),
@@ -38936,7 +39212,7 @@ var render = function() {
               attrs: { type: "button" },
               on: { click: _vm.generateVouchers }
             },
-            [_vm._v("\n                        Generate\n                    ")]
+            [_vm._v("\n                    Generate\n                ")]
           )
         ])
       ])
@@ -38956,11 +39232,7 @@ var staticRenderFns = [
             "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
           attrs: { for: "inline-amount" }
         },
-        [
-          _vm._v(
-            "\n                        Voucher Amount\n                    "
-          )
-        ]
+        [_vm._v("\n                    Voucher Amount\n                ")]
       )
     ])
   },
@@ -38976,11 +39248,7 @@ var staticRenderFns = [
             "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
           attrs: { for: "inline-number" }
         },
-        [
-          _vm._v(
-            "\n                        Voucher Number\n                    "
-          )
-        ]
+        [_vm._v("\n                    Voucher Number\n                ")]
       )
     ])
   },
@@ -38996,11 +39264,7 @@ var staticRenderFns = [
             "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
           attrs: { for: "inline-number" }
         },
-        [
-          _vm._v(
-            "\n                        Voucher Expiry date\n                    "
-          )
-        ]
+        [_vm._v("\n                    Voucher Expiry date\n                ")]
       )
     ])
   }
@@ -39270,8 +39534,20 @@ var render = function() {
   return _c("div", { staticClass: "allVouchers" }, [
     _c("h2", [_vm._v("All Vouchers")]),
     _vm._v(" "),
+    _vm.wait
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3",
+            attrs: { role: "alert" }
+          },
+          [_c("p", { staticClass: "font-bold" }, [_vm._v("Please Wait")])]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "myTable" }, [
-      _c("table", { staticClass: ".table-responsive  " }, [
+      _c("table", { staticClass: "table-responsive  " }, [
         _vm._m(0),
         _vm._v(" "),
         _c(
@@ -39304,7 +39580,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                            Buy Voucher\n                        "
+                      "\n                        Buy Voucher\n                    "
                     )
                   ]
                 )
@@ -39341,6 +39617,113 @@ var render = function() {
               _c("form", { staticClass: "w-full max-w-sm p-6" }, [
                 _c("div", { staticClass: "md:flex-row  mb-6" }, [
                   _c("div", {}, [
+                    _c("label", { staticClass: "block mt-4" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
+                        },
+                        [_vm._v("Payment Method")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.vouchers.method,
+                              expression: "vouchers.method"
+                            }
+                          ],
+                          staticClass: "form-select mt-1 block w-full",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.vouchers,
+                                "method",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", [_vm._v("M-Pesa")]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("Bank")]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("Cash on Delivery")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "md:flex-row md:items-left mb-6" },
+                      [
+                        _c("div", {}, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4",
+                              attrs: { for: "inline-number" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        Transaction Code(leave blank for COD)\n                                    "
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "md:w-2/3" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.vouchers.transactionCode,
+                                expression: "vouchers.transactionCode"
+                              }
+                            ],
+                            staticClass:
+                              "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
+                            attrs: {
+                              id: "inline-number",
+                              type: "text",
+                              placeholder: "M-Pesa/Bank"
+                            },
+                            domProps: { value: _vm.vouchers.transactionCode },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.vouchers,
+                                  "transactionCode",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
                     _c(
                       "label",
                       {
@@ -39350,7 +39733,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                                    Voucher Code\n                                "
+                          "\n                                Voucher Code\n                            "
                         )
                       ]
                     )
@@ -39387,109 +39770,6 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "md:flex-row md:items-left mb-6" }, [
-                  _c("div", {}, [
-                    _c(
-                      "label",
-                      {
-                        staticClass:
-                          "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4",
-                        attrs: { for: "inline-number" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                    Transaction Code(leave blank for COD)\n                                "
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "md:w-2/3" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.vouchers.transactionCode,
-                          expression: "vouchers.transactionCode"
-                        }
-                      ],
-                      staticClass:
-                        "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
-                      attrs: {
-                        id: "inline-number",
-                        type: "text",
-                        placeholder: "M-Pesa/Bank"
-                      },
-                      domProps: { value: _vm.vouchers.transactionCode },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.vouchers,
-                            "transactionCode",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("label", { staticClass: "block mt-4" }, [
-                  _c(
-                    "span",
-                    {
-                      staticClass:
-                        "block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
-                    },
-                    [_vm._v("Payment Method")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.vouchers.method,
-                          expression: "vouchers.method"
-                        }
-                      ],
-                      staticClass: "form-select mt-1 block w-full",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.vouchers,
-                            "method",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", [_vm._v("M-Pesa")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Bank")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Cash on Delivery")])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
                 _c("div", { staticClass: "md:flex md:items-center" }, [
                   _c("div", { staticClass: "md:w-1/3" }),
                   _vm._v(" "),
@@ -39499,6 +39779,7 @@ var render = function() {
                       {
                         staticClass:
                           "shadow bg-blue-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded",
+                        class: { canBuy: "cursor-not-allowed" },
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
@@ -39508,7 +39789,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                                    Purchase\n                                "
+                          "\n                                Purchase\n                            "
                         )
                       ]
                     )
@@ -39707,7 +39988,7 @@ var render = function() {
     _c("h2", [_vm._v("Redeemed Vouchers")]),
     _vm._v(" "),
     _c("div", { staticClass: "myTable" }, [
-      _c("table", { staticClass: "table-fixed" }, [
+      _c("table", { staticClass: "table-responsive" }, [
         _vm._m(0),
         _vm._v(" "),
         _c(
@@ -39981,38 +40262,30 @@ var render = function() {
       _c("h2", [_vm._v("My vouchers")]),
       _vm._v(" "),
       _c("div", { staticClass: "myTable" }, [
-        _c("table", { staticClass: "table-fixed" }, [
+        _c("table", { staticClass: "table-responsive" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(this.$store.getters.getMyVouchers, function(voucher) {
               return _c("tr", { key: voucher.id }, [
-                _c("td", { staticClass: "w-1/12 px-1 py-2" }, [
+                _c("td", { staticClass: "w-1/10 px-1 py-2" }, [
                   _vm._v(_vm._s(voucher.id))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-1/12 px-4 py-2" }, [
+                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
                   _vm._v(_vm._s(voucher.code))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-1/12 px-4 py-2" }, [
+                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
                   _vm._v(_vm._s(voucher.amount))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-1/12 px-4 py-2" }, [
-                  _vm._v(_vm._s(voucher.status))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "w-1/12 px-4 py-2" }, [
-                  _vm._v(_vm._s(voucher.payment_code))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "w-4/12 px-1 py-2" }, [
+                _c("td", { staticClass: "w-2/10 px-1 py-2" }, [
                   _vm._v(_vm._s(voucher.expiry_date))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-1/12 px-4 py-2" }, [
+                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
                   _c(
                     "button",
                     {
@@ -40028,7 +40301,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-1/12 px-4 py-2" }, [
+                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
                   _c(
                     "button",
                     {
@@ -40044,7 +40317,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-1/12 px-4 py-2" }, [
+                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
                   _vm._v(_vm._s(voucher.email))
                 ])
               ])
@@ -40153,23 +40426,19 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticClass: "w-1/12 px-1 py-2" }, [_vm._v("ID")]),
+        _c("th", { staticClass: "w-1/10 px-1 py-2" }, [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", { staticClass: "w-1/12 px-4 py-2" }, [_vm._v("Code")]),
+        _c("th", { staticClass: "w-1/10 px-4 py-2" }, [_vm._v("Code")]),
         _vm._v(" "),
-        _c("th", { staticClass: "w-1/12 px-4 py-2" }, [_vm._v("Amount")]),
+        _c("th", { staticClass: "w-1/10 px-4 py-2" }, [_vm._v("Amount")]),
         _vm._v(" "),
-        _c("th", { staticClass: "w-1/12 px-4 py-2" }, [_vm._v("Status")]),
+        _c("th", { staticClass: "w-2/10 px-1 py-2" }, [_vm._v("Expiry Date")]),
         _vm._v(" "),
-        _c("th", { staticClass: "w-1/12 px-4 py-2" }, [_vm._v("Pay Code")]),
+        _c("th", { staticClass: "w-1/10 px-4 py-2" }, [_vm._v("Redeem")]),
         _vm._v(" "),
-        _c("th", { staticClass: "w-3/12 px-1 py-2" }, [_vm._v("Expiry Date")]),
+        _c("th", { staticClass: "w-1/10 px-4 py-2" }, [_vm._v("Give")]),
         _vm._v(" "),
-        _c("th", { staticClass: "w-1/12 px-4 py-2" }, [_vm._v("Redeem")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "w-1/12 px-4 py-2" }, [_vm._v("Give")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "w-1/12 px-4 py-2" }, [_vm._v("Given To")])
+        _c("th", { staticClass: "w-1/10 px-4 py-2" }, [_vm._v("Given To")])
       ])
     ])
   }

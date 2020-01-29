@@ -32,7 +32,7 @@ class SendAdminNotification
     public function handle(BuyVoucherNotificationEvent $event)
     {
         Log::alert("Triggered the Notify admin event");
-        Mail::to(Auth::user())->send(new NotifyAdminMail("name","action","details"));
+        Mail::to(Auth::user())->send(new NotifyAdminMail($event->name,$event->email,$event->details));
 
     }
 }

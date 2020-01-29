@@ -22,6 +22,10 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\SendAdminNotification::class,
             \App\Listeners\SendUserNotification::class,
         ],
+        \App\Events\VoucherNotificationEvent::class => [
+            \App\Listeners\SendAdminNotification::class,
+            \App\Listeners\SendUserNotification::class,
+        ],
     ];
 
     /**

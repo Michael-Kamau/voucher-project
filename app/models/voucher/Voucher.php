@@ -52,5 +52,12 @@ class Voucher extends Model
         ]);
     }
 
+    public function scopeUserVouchers($query, $id)
+    {
+        return $query->where([
+            ['user_id', '=', $id]
+        ]);
+    }
+
 
 }

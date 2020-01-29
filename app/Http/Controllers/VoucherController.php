@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\BuyVoucherNotificationEvent;
+use App\Events\VoucherNotificationEvent;
+use App\Mail\GivenVoucherMail;
 use App\Mail\NotifyAdminMail;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\Mail\Notification;
+use Illuminate\Support\Facades\Mail;
 
 
 class VoucherController extends Controller
@@ -71,10 +74,41 @@ class VoucherController extends Controller
 
 
         //Get a single voucher
-        $voucher = Voucher::vouchers(Auth::user()->id, $status)->get();
+        $voucher = Voucher::vouchers(Auth::user()->id, $status)->orderBy('updated_at', 'desc')->get();
 
         //return single article as a resource
         return new VoucherResource($voucher);
+    }
+
+
+    /**
+     * Display the specified resource.
+     * @return \Illuminate\Http\Response
+     */
+    public function usersAll()
+    {
+//        \Mail::to('matildamariwa3@gmail.com')->send(new Notification(Auth::user()));
+
+
+        //Get a single voucher
+        $users = User::all();
+
+        //return single article as a resource
+        return new VoucherResource($users);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function userVouchers($id)
+    {
+        //
+        $vouchers = Voucher::userVouchers($id)->orderBy('updated_at', 'desc')->get();
+
+        return new VoucherResource($vouchers);
     }
 
     /**
@@ -133,9 +167,9 @@ class VoucherController extends Controller
         $voucher->payment_method = $request->input('method');
         $voucher->save();
 
-        $username=Auth::user()->name;
-        $email=Auth::user()->email;
-        event(new BuyVoucherNotificationEvent($username,$email,"One Voucher Bought"));
+        $username = Auth::user()->name;
+        $email = Auth::user()->email;
+        event(new BuyVoucherNotificationEvent($username, $email, "One Voucher Bought"));
 //        \Mail::to('kamau.karitu@gmail.com')->send(new NotifyAdminMail($username,'VOUCHER BOUGHT EVENT','DETAILS'));
     }
 
@@ -148,15 +182,18 @@ class VoucherController extends Controller
     public function give(Request $request)
     {
 
-        $verification_code=rand ( 10000 , 99999 );
+        $verification_code = rand(10000, 99999);
         //
         $voucher = Voucher::find($request->input('id'));
 //        $voucher->status='bought';
-        if($voucher->verification_code!=' '){
-            $voucher->verification_code=$verification_code;
+        if ($voucher->verification_code != ' ') {
+            $voucher->verification_code = $verification_code;
             $voucher->email = $request->input('email');
             $voucher->save();
-        }else{
+            //event(new BuyVoucherNotificationEvent(Auth::user()->name, Auth::user()->email, "One Voucher given"));
+            Mail::to($request->input('email'))->send(new GivenVoucherMail(Auth::user()->name,$verification_code));
+
+        } else {
             return response('Record Not found', 404)
                 ->header('Content-Type', 'text/plain');
         }
@@ -176,6 +213,7 @@ class VoucherController extends Controller
 //        $voucher->status='bought';
         $voucher->status = 'redeemed';
         $voucher->save();
+        event(new BuyVoucherNotificationEvent(Auth::user()->name, Auth::user()->email, "One Voucher redeemed"));
     }
 
     /**
@@ -192,15 +230,12 @@ class VoucherController extends Controller
         //Get a single voucher
         $voucher = Voucher::voucherVerification($request->input('voucher'), $request->input('verification'))->firstOrFail();
 
-
-
-
-        $voucher->user_id=Auth::user()->id;
-        $voucher->verification_code=null;
-        $voucher->email=null;
+        $voucher->user_id = Auth::user()->id;
+        $voucher->verification_code = null;
+        $voucher->email = null;
         $voucher->save();
 
-
+        event(new BuyVoucherNotificationEvent(Auth::user()->name, Auth::user()->email, "One Voucher Claimed"));
 
 
         //return single article as a resource
@@ -220,8 +255,8 @@ class VoucherController extends Controller
         $number = $request->input('number');
         $expiry = $request->input('expiry');
 
-        Log:info($request->input('amount'));
-
+        Log:
+        info($request->input('amount'));
 
 
         for ($i = 0; $i < $number; $i++) {

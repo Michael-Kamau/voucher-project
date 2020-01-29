@@ -3,9 +3,11 @@
 namespace App\Listeners;
 
 use App\Events\BuyVoucherNotificationEvent;
+use App\Mail\NotifyUserMail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class SendUserNotification
 {
@@ -29,5 +31,6 @@ class SendUserNotification
     {
         //
         Log::alert('Triggered this listener');
+        Mail::to($event->email)->send(new NotifyUserMail($event->name,$event->details));
     }
 }
