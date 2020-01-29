@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Give A voucher
     Route::post('api/voucher/give', 'VoucherController@give');
 
+    //Claim A voucher
+    Route::post('api/voucher/claim', 'VoucherController@claim');
+
     //Redeem A voucher
     Route::post('api/voucher/redeem', 'VoucherController@redeem');
 
@@ -58,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('logout', function(){
-    return redirect('login')->with(Auth::logout());
+    return redirect('/')-> with(Auth::logout());
 });
 
 

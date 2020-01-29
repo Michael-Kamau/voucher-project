@@ -33,12 +33,14 @@
                 <a  class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                     <router-link to="/myVouchers">My Vouchers</router-link>
                 </a>
-                <a  class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                <a  class="block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4">
                     <router-link to="/redeemedVouchers">Redeemed</router-link>
                 </a>
-                <a  v-if="!this.$store.getters.getIfAdmin" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-                    <router-link to="/redeemedVouchers">Logout</router-link>
+                <a  class="block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white">
+                    <router-link to="/claim">Claim Voucher</router-link>
                 </a>
+
+
             </div>
             <div >
                 <a v-if="this.$store.getters.getIfAdmin"href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"><router-link to="/admin">Admin Panel</router-link></a>
@@ -68,5 +70,9 @@
     }
     main{
         padding-top: 0px;
+    }
+
+    a{
+        color: white;
     }
 </style>

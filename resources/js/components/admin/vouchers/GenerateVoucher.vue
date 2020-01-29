@@ -67,9 +67,9 @@
         },
         methods: {
             generateVouchers() {
-                //this.$store.dispatch('generateVouchers',this.form)
+                this.$store.dispatch('generateVouchers',this.form)
                 // this.$router.go('https://www.facebook.com')
-                window.location.href = "/logout"
+                //window.location.href = "/logout"
             },
         },
         created() {

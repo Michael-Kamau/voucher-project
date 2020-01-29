@@ -19,13 +19,23 @@ class Voucher extends Model
         return $query->where('status', '=', $status);
     }
 
-    //get vouchers by status
+    //get vouchers by status and user id
     public function scopeVouchers($query,$user, $status)
     {
         //dd($query->where('user_id',$user)->where('status','bought')->get());
         return $query->where([
             'user_id'=> $user,
             'status'=> $status
+        ]);
+    }
+
+    //get vouchers by Voucher Code and Transaction Code
+    public function scopeVoucherVerification($query,$voucher, $transaction)
+    {
+        //dd($query->where('user_id',$user)->where('status','bought')->get());
+        return $query->where([
+            'code'=> $voucher,
+            'verification_code'=> $transaction
         ]);
     }
 

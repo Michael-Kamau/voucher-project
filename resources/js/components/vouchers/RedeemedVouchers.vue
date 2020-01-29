@@ -28,11 +28,11 @@
         <table class="table-fixed">
             <thead>
             <tr>
-                <th class="w-1/2 px-4 py-2">Id</th>
-                <th class="w-1/4 px-4 py-2">Code</th>
-                <th class="w-1/4 px-4 py-2">Amount</th>
-                <th class="w-1/4 px-4 py-2">Status</th>
-                <th class="w-1/4 px-4 py-2">Expiry Date</th>
+                <th class="w-1/9 px-4 py-2">Id</th>
+                <th class="w-2/9 px-4 py-2">Code</th>
+                <th class="w-2/9 px-4 py-2">Amount</th>
+                <th class="w-2/9 px-4 py-2">Status</th>
+                <th class="w-2/9 px-4 py-2">Expiry Date</th>
             </tr>
             </thead>
             <tbody>

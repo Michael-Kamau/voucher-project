@@ -2,41 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22f14ed5-2947-45ff-a6b8-96e05521753a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/pages/AdminPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/pages/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/admin/vouchers/GenerateVoucher.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/vouchers/BuyModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/pluginsVue/vuetify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/adminView1.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/appMain.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/notification.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VoucherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VoucherController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/voucher/Voucher.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/voucher/Voucher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/foundation/js/vendor/foundation.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/adminApp.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/ActiveVouchers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/vouchers/ActiveVouchers.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/AddVoucher.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/includes/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/RedeemedVouchers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/vouchers/RedeemedVouchers.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/vouchers/GenerateVoucher.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/vouchers/GenerateVoucher.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/components.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/components.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/includes/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/includes/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/vouchers/ActiveVouchers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vouchers/ActiveVouchers.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/vouchers/BuyModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vouchers/BuyModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/vouchers/RedeemedVouchers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vouchers/RedeemedVouchers.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/vouchers/UnclaimedVouchers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vouchers/UnclaimedVouchers.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/vouchers/UserVoucher.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/vouchers/UserVoucher.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adminView.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminView.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vueMain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vueMain.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,11 +181,19 @@
       <recent name="$PROJECT_DIR$/resources/js/router" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.UserVoucher.vue">
+    <configuration name="UserVoucher.vue" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cytonn_project/resources/js/components/vouchers/UserVoucher.vue" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.UserVoucher.vue" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -225,7 +221,8 @@
       <workItem from="1579707848496" duration="73829000" />
       <workItem from="1580044068832" duration="4400000" />
       <workItem from="1580065716801" duration="20278000" />
-      <workItem from="1580129709742" duration="12493000" />
+      <workItem from="1580129709742" duration="16676000" />
+      <workItem from="1580191773096" duration="37427000" />
     </task>
     <servers />
   </component>
@@ -233,34 +230,35 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="378" y="162" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580119299492">
+    <state x="378" y="162" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580277790370">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="378" y="162" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.800@0.0.1280.800" timestamp="1580119299492" />
-    <state x="388" y="254" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1579958934905">
+    <state x="378" y="162" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.800@0.0.1280.800" timestamp="1580277790370" />
+    <state x="388" y="254" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1580228749269">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="388" y="254" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.800@0.0.1280.800" timestamp="1579958934905" />
-    <state width="1238" height="212" key="GridCell.Tab.0.bottom" timestamp="1579966930944">
+    <state x="388" y="254" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.800@0.0.1280.800" timestamp="1580228749269" />
+    <state width="776" height="212" key="GridCell.Tab.0.bottom" timestamp="1580206394097">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1579966930944" />
-    <state width="1238" height="212" key="GridCell.Tab.0.center" timestamp="1579966930811">
+    <state width="776" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1580206394097" />
+    <state width="776" height="212" key="GridCell.Tab.0.center" timestamp="1580206394095">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1579966930811" />
-    <state width="1238" height="212" key="GridCell.Tab.0.left" timestamp="1579966930795">
+    <state width="776" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1580206394095" />
+    <state width="776" height="212" key="GridCell.Tab.0.left" timestamp="1580206394094">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1579966930795" />
-    <state width="1238" height="212" key="GridCell.Tab.0.right" timestamp="1579966930942">
+    <state width="776" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1580206394094" />
+    <state width="776" height="212" key="GridCell.Tab.0.right" timestamp="1580206394096">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1579966930942" />
-    <state x="319" y="232" key="com.intellij.ide.util.TipDialog" timestamp="1580067826701">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="776" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1580206394096" />
+    <state x="319" y="233" key="com.intellij.ide.util.TipDialog" timestamp="1580191772247">
+      <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="319" y="232" key="com.intellij.ide.util.TipDialog/0.0.1280.800@0.0.1280.800" timestamp="1580067826701" />
+    <state x="319" y="233" key="com.intellij.ide.util.TipDialog/0.23.1280.725@0.23.1280.725" timestamp="1580191772247" />
     <state x="289" y="134" width="700" height="530" key="recent.locations.popup" timestamp="1580045428661">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -269,9 +267,9 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="305" y="185" key="run.anything.popup/0.0.1280.800@0.0.1280.800" timestamp="1580126381318" />
-    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1580126503607">
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1580223490838">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1580126503607" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1580223490838" />
   </component>
 </project>

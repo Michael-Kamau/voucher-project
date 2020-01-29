@@ -9,8 +9,14 @@ import UserVoucher from "../components/vouchers/UserVoucher";
 import RedeemedVouchers from "../components/vouchers/RedeemedVouchers.vue"
 import AdminPage from "../components/admin/pages/AdminPage.vue";
 import GenerateVoucher from "../components/admin/vouchers/GenerateVoucher.vue";
+import VModal from 'vue-js-modal'
+import UnclaimedVouchers from "../components/vouchers/UnclaimedVouchers.vue";
 
 Vue.use(Router)
+
+
+
+Vue.use(VModal);
 
 export default new Router({
     mode: 'hash',
@@ -49,6 +55,12 @@ export default new Router({
                     // when /user/:id/posts is matched
                     path: 'generate',
                     component: GenerateVoucher
+                },
+                {
+                    // UserPosts will be rendered inside User's <router-view>
+                    // when /user/:id/posts is matched
+                    path: 'claim',
+                    component: UnclaimedVouchers
                 }
             ]
 

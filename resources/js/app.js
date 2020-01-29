@@ -38,12 +38,15 @@ require('./components/components')
 // import Vuetify from "./pluginsVue/vuetify.js";
 import store from "./store"
 import router from "./router"
+import VModal from 'vue-js-modal'
 
+Vue.use(VModal);
 
 const app = new Vue({
     el: '#app',
     store,
     router,
+    VModal
 
 
 });

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BuyVoucherNotificationEvent;
+use App\Mail\NotifyAdminMail;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -10,6 +12,8 @@ use App\Http\Resources\Voucher as VoucherResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+
+use App\Mail\Notification;
 
 
 class VoucherController extends Controller
@@ -63,6 +67,7 @@ class VoucherController extends Controller
      */
     public function show($status)
     {
+//        \Mail::to('matildamariwa3@gmail.com')->send(new Notification(Auth::user()));
 
 
         //Get a single voucher
@@ -118,13 +123,20 @@ class VoucherController extends Controller
      */
     public function buy(Request $request)
     {
-        //
+
+//        event(new BuyVoucherNotificationEvent(Auth::user(),));
         //dd($request);
-        $voucher = Voucher::find($request->input('voucher_id'));
+        $voucher = Voucher::find($request->input('id'));
         $voucher->user_id = Auth::user()->id;
         $voucher->status = 'bought';
-        $voucher->payment_code = 'LLWWHY5W2A';
+        $voucher->payment_code = $request->input('transactionCode');
+        $voucher->payment_method = $request->input('method');
         $voucher->save();
+
+        $username=Auth::user()->name;
+        $email=Auth::user()->email;
+        event(new BuyVoucherNotificationEvent($username,$email,"One Voucher Bought"));
+//        \Mail::to('kamau.karitu@gmail.com')->send(new NotifyAdminMail($username,'VOUCHER BOUGHT EVENT','DETAILS'));
     }
 
     /**
@@ -135,11 +147,20 @@ class VoucherController extends Controller
      */
     public function give(Request $request)
     {
+
+        $verification_code=rand ( 10000 , 99999 );
         //
-        $voucher = Voucher::find($request->input('voucher'));
+        $voucher = Voucher::find($request->input('id'));
 //        $voucher->status='bought';
-        $voucher->email = $request->input('email');
-        $voucher->save();
+        if($voucher->verification_code!=' '){
+            $voucher->verification_code=$verification_code;
+            $voucher->email = $request->input('email');
+            $voucher->save();
+        }else{
+            return response('Record Not found', 404)
+                ->header('Content-Type', 'text/plain');
+        }
+
     }
 
     /**
@@ -155,6 +176,35 @@ class VoucherController extends Controller
 //        $voucher->status='bought';
         $voucher->status = 'redeemed';
         $voucher->save();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function claim(Request $request)
+    {
+        //
+
+        Log::info($request);
+        //Get a single voucher
+        $voucher = Voucher::voucherVerification($request->input('voucher'), $request->input('verification'))->firstOrFail();
+
+
+
+
+        $voucher->user_id=Auth::user()->id;
+        $voucher->verification_code=null;
+        $voucher->email=null;
+        $voucher->save();
+
+
+
+
+        //return single article as a resource
+        //return new VoucherResource($voucher);
     }
 
 
