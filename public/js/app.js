@@ -2405,6 +2405,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ActiveVouchers.vue",
@@ -2608,13 +2614,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RedeemedVouchers",
   mounted: function mounted() {
@@ -2741,16 +2740,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -39649,55 +39638,90 @@ var render = function() {
   return _c("div", { staticClass: "allVouchers" }, [
     _c("h2", [_vm._v("All Vouchers")]),
     _vm._v(" "),
-    _c("div", { staticClass: "myTable" }, [
-      _c("table", { staticClass: "table-responsive  " }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(this.$store.getters.getAllVouchers, function(voucher) {
-            return _c("tr", { key: voucher.id }, [
-              _c("td", { staticClass: "border px-2 py-2" }, [
-                _vm._v(_vm._s(voucher.code))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-2 py-2" }, [
-                _vm._v(_vm._s(voucher.type))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-2 py-2" }, [
-                _vm._v("Ksh." + _vm._s(voucher.amount))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-2 py-2" }, [
-                _vm._v(_vm._s(voucher.expiry_date))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-2 py-2" }, [
+    this.$store.getters.getAllVouchers.length
+      ? _c("div", { staticClass: "myTable" }, [
+          _c("table", { staticClass: "table-responsive  " }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(this.$store.getters.getAllVouchers, function(voucher) {
+                return _c("tr", { key: voucher.id }, [
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v(_vm._s(voucher.code))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v(_vm._s(voucher.type))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v("Ksh." + _vm._s(voucher.amount))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _vm._v(_vm._s(voucher.expiry_date))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-2 py-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded",
+                        on: {
+                          click: function($event) {
+                            return _vm.show(voucher.id, voucher.code)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Buy Voucher\n                    "
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      : _c(
+          "div",
+          {
+            staticClass:
+              "bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md",
+            attrs: { role: "alert" }
+          },
+          [
+            _c("div", { staticClass: "flex" }, [
+              _c("div", { staticClass: "py-1" }, [
                 _c(
-                  "button",
+                  "svg",
                   {
-                    staticClass:
-                      "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded",
-                    on: {
-                      click: function($event) {
-                        return _vm.show(voucher.id, voucher.code)
-                      }
+                    staticClass: "fill-current h-6 w-6 text-teal-500 mr-4",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
                     }
                   },
                   [
-                    _vm._v(
-                      "\n                        Buy Voucher\n                    "
-                    )
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                      }
+                    })
                   ]
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
             ])
-          }),
-          0
-        )
-      ])
-    ]),
+          ]
+        ),
     _vm._v(" "),
     _c("div", { staticClass: "myModal" }, [
       _c(
@@ -39963,6 +39987,18 @@ var staticRenderFns = [
         _c("th", { staticClass: "w-1/5 px-2 py-2" }, [_vm._v("Buy")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Notification")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-sm" }, [
+        _vm._v("No Vouchers Available currently")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -40130,43 +40166,78 @@ var render = function() {
   return _c("div", { staticClass: "redeemedVouchers" }, [
     _c("h2", [_vm._v("Redeemed Vouchers")]),
     _vm._v(" "),
-    _c("div", { staticClass: "myTable" }, [
-      _c("table", { staticClass: "table-responsive" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(this.$store.getters.getMyRedeemed, function(voucher) {
-            return _c("tr", { key: voucher.id }, [
-              _c("td", { staticClass: "border px-3 py-2" }, [
-                _vm._v(_vm._s(voucher.id))
+    this.$store.getters.getMyRedeemed.length
+      ? _c("div", { staticClass: "myTable" }, [
+          _c("table", { staticClass: "table-responsive" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(this.$store.getters.getMyRedeemed, function(voucher) {
+                return _c("tr", { key: voucher.id }, [
+                  _c("td", { staticClass: "border px-3 py-2" }, [
+                    _vm._v(_vm._s(voucher.id))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-4 py-2" }, [
+                    _vm._v(_vm._s(voucher.code))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-4 py-2" }, [
+                    _vm._v(_vm._s(voucher.amount))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-4 py-2" }, [
+                    _vm._v(_vm._s(voucher.status))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-4 py-2" }, [
+                    _vm._v(_vm._s(voucher.type))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "border px-4 py-2" }, [
+                    _vm._v(_vm._s(voucher.expiry_date))
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      : _c(
+          "div",
+          {
+            staticClass:
+              "bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md",
+            attrs: { role: "alert" }
+          },
+          [
+            _c("div", { staticClass: "flex" }, [
+              _c("div", { staticClass: "py-1" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "fill-current h-6 w-6 text-teal-500 mr-4",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                      }
+                    })
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("td", { staticClass: "border px-4 py-2" }, [
-                _vm._v(_vm._s(voucher.code))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-4 py-2" }, [
-                _vm._v(_vm._s(voucher.amount))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-4 py-2" }, [
-                _vm._v(_vm._s(voucher.status))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-4 py-2" }, [
-                _vm._v(_vm._s(voucher.type))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "border px-4 py-2" }, [
-                _vm._v(_vm._s(voucher.expiry_date))
-              ])
+              _vm._m(1)
             ])
-          }),
-          0
+          ]
         )
-      ])
-    ])
   ])
 }
 var staticRenderFns = [
@@ -40187,6 +40258,18 @@ var staticRenderFns = [
         _c("th", { staticClass: "w-2/9 px-4 py-2" }, [_vm._v("Product")]),
         _vm._v(" "),
         _c("th", { staticClass: "w-2/9 px-4 py-2" }, [_vm._v("Expiry Date")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Notification")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-sm" }, [
+        _vm._v("You do Not Have Any Redeemed Vouchers")
       ])
     ])
   }
@@ -40426,79 +40509,114 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "myTable" }, [
-        _c("table", { staticClass: "table-responsive" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(this.$store.getters.getMyVouchers, function(voucher) {
-              return _c("tr", { key: voucher.id }, [
-                _c("td", { staticClass: "w-1/10 px-1 py-2" }, [
-                  _vm._v(_vm._s(voucher.id))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
-                  _vm._v(_vm._s(voucher.code))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
-                  _vm._v(_vm._s(voucher.amount))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "w-2/10 px-1 py-2" }, [
-                  _vm._v(_vm._s(voucher.expiry_date))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
+      this.$store.getters.getMyVouchers.length
+        ? _c("div", { staticClass: "myTable" }, [
+            _c("table", { staticClass: "table-responsive" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(this.$store.getters.getMyVouchers, function(voucher) {
+                  return _c("tr", { key: voucher.id }, [
+                    _c("td", { staticClass: "w-1/10 px-1 py-2" }, [
+                      _vm._v(_vm._s(voucher.id))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
+                      _vm._v(_vm._s(voucher.code))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
+                      _vm._v(_vm._s(voucher.amount))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "w-2/10 px-1 py-2" }, [
+                      _vm._v(_vm._s(voucher.expiry_date))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow",
+                          on: {
+                            click: function($event) {
+                              return _vm.redeemVoucher(voucher.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Redeem\n                    "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow",
+                          on: {
+                            click: function($event) {
+                              return _vm.show(voucher.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Give\n                    "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
+                      _vm._v(_vm._s(voucher.email))
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        : _c(
+            "div",
+            {
+              staticClass:
+                "bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md",
+              attrs: { role: "alert" }
+            },
+            [
+              _c("div", { staticClass: "flex" }, [
+                _c("div", { staticClass: "py-1" }, [
                   _c(
-                    "button",
+                    "svg",
                     {
-                      staticClass:
-                        "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow",
-                      on: {
-                        click: function($event) {
-                          return _vm.redeemVoucher(voucher.id)
-                        }
+                      staticClass: "fill-current h-6 w-6 text-teal-500 mr-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
                       }
                     },
                     [
-                      _vm._v(
-                        "\n                        Redeem\n                    "
-                      )
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                        }
+                      })
                     ]
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow",
-                      on: {
-                        click: function($event) {
-                          return _vm.show(voucher.id)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        Give\n                    "
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "w-1/10 px-4 py-2" }, [
-                  _vm._v(_vm._s(voucher.email))
-                ])
+                _vm._m(1)
               ])
-            }),
-            0
-          )
-        ])
-      ]),
+            ]
+          ),
       _vm._v(" "),
       _c(
         "modal",
@@ -40614,6 +40732,18 @@ var staticRenderFns = [
         _c("th", { staticClass: "w-1/10 px-4 py-2" }, [_vm._v("Give")]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/10 px-4 py-2" }, [_vm._v("Given To")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Notification")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-sm" }, [
+        _vm._v("You do Not Have Any Active Vouchers")
       ])
     ])
   }

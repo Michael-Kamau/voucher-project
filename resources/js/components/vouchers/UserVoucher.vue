@@ -6,34 +6,7 @@
             <p class="font-bold">Please wait</p>
             <p>Processing...</p>
         </div>
-        <div class="myTable">
-
-            <!--        <table>-->
-            <!--            <thead>-->
-            <!--            <tr>-->
-            <!--                <th>Id</th>-->
-            <!--                <th>Code</th>-->
-            <!--                <th>Amount</th>-->
-            <!--                <th>Status</th>-->
-            <!--                <th>Expiry Date</th>-->
-            <!--                <th>Redeem</th>-->
-            <!--                <th>Give Voucher</th>-->
-            <!--                <th>Give</th>-->
-
-            <!--            </tr>-->
-            <!--            </thead>-->
-            <!--            <tr v-for="voucher in this.$store.getters.getMyVouchers" :key="voucher.id">-->
-            <!--                <td>{{voucher.id}}</td>-->
-            <!--                <td>{{voucher.code}}</td>-->
-            <!--                <td>{{voucher.amount}}</td>-->
-            <!--                <td>{{voucher.status}}</td>-->
-            <!--                <td>{{voucher.expiry_date}}</td>-->
-            <!--                <td><button @click="redeemVoucher(voucher.id)">Redeem</button></td>-->
-            <!--                <td><input type="email" name="email" placeholder="email address"><br></td>-->
-            <!--                <td><button @click="giveVoucher()">Give</button></td>-->
-            <!--            </tr>-->
-            <!--        </table>-->
-
+        <div class="myTable" v-if="this.$store.getters.getMyVouchers.length">
             <table class="table-responsive">
                 <thead>
                 <tr>
@@ -72,6 +45,23 @@
                 </tbody>
             </table>
 
+
+        </div>
+        <div v-else class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+             role="alert">
+            <div class="flex">
+                <div class="py-1">
+                    <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20">
+                        <path
+                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-bold">Notification</p>
+                    <p class="text-sm">You do Not Have Any Active Vouchers</p>
+                </div>
+            </div>
         </div>
 
         <modal v-on:buy="" name="give-modal" @before-open="beforeOpen" :adaptive="true" :height="200" :width="400"
@@ -124,7 +114,7 @@
         methods: {
             giveVoucher() {
                 if (this.details.email != null) {
-                    this.wait=true
+                    this.wait = true
                     return new Promise((resolve, reject) => {
                         console.log(this.details)
                         axios.post(`/api/voucher/give`, this.details)
@@ -135,8 +125,8 @@
                             }).catch(e => {
                             //this.errors.push(e)
                             console.log(e)
-                        }).then(response =>{
-                            this.wait=null
+                        }).then(response => {
+                            this.wait = null
                         })
                     })
 
@@ -145,10 +135,10 @@
 
             },
             redeemVoucher(id) {
-                this.wait=true
+                this.wait = true
                 this.$store.dispatch('redeemVoucher', {'voucher': id})
                     .then(response => {
-                        this.wait=false
+                        this.wait = false
                     })
             },
             show(id) {
